@@ -1,0 +1,141 @@
+.section {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+/* Font Awesome Icons */
+.fa-google {
+    background: conic-gradient(from -45deg, #ea4335 110deg, #4285f4 90deg 180deg, #34a853 180deg 270deg, #fbbc05 270deg) 73% 55%/150% 150% no-repeat;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    font-size: 18px;
+}
+
+.fa-apple {
+    color: rgb(0, 15, 29);
+    font-size: 20px;
+}
+/* End of Font Awesome Icons */
+
+/* Landing Page Section */
+.landing-section {
+    width: 90%;
+    /* margin: 50px auto; */
+    display: flex;
+    justify-content: center;
+}
+
+.landing-section-xlogo {
+    align-self: stretch;
+    display: flex;
+    justify-content: center;
+    /* border: 1px solid rgb(224, 204, 204); */
+    /* width: 40%; */
+}
+
+.landing-section-xlogo svg {
+    fill: white;
+    width: 50%;
+}
+
+.landing-section-content {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    /* gap: 30px; */
+    /* border: 1px solid rgb(255, 255, 255); */
+}
+
+.landing-section-content h1 {
+    margin-bottom: 0;
+    font-weight: 800;
+    font-size: 3.8em;
+}
+
+.landing-links-register h3 {
+    font-size: 1.8em;
+    font-weight: 800;
+}
+
+.landing-links-register {
+    display: flex;
+    flex-direction: column;
+    /* align-self: flex-start; */
+    /* border: 1px solid rgb(255, 255, 255); */
+    width: 60%;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.landing-link {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.landing-link .link-btn {
+    /* text-align: center; */
+    border-radius: 20px;
+    background-color: white;
+    padding: 10px 16px;
+    cursor: pointer;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.landing-link .link-btn-text {
+    font-size: 0.88em;
+    color: black;
+    font-weight: 600;
+}
+
+/* Styling classes */
+.landing-link .blue-it {
+    background-color: #0095ff;
+}
+
+.landing-link .blue-it .link-btn-text {
+    color: #ffffff;
+}
+
+.text-muted {
+    color: #dcdcdc71;
+    font-size: 0.75em;
+}
+/* End of Styling classes */
+
+.or-gap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.88em;
+    font-size: 0.88em;
+    gap: 5px;
+    /* text-align: center; */
+}
+.or-gap .dash {
+    width: 100%;
+    height: 1px;
+    background-color: #b0b0b071;
+}
+
+.small-info {
+    width: 60%;
+    display: flex;
+    gap: 0px;
+    font-weight: 600;
+}
+
+.small-info .ghost-style {
+    background-color: rgba(0, 0, 0, 0.002);
+    border: 1px solid #ffffffc0;
+}
+
+/* End of Landing Page Section */

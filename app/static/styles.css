@@ -1,0 +1,18 @@
+/* Break For CSS stylesheets into small modules for each route 
+...or page and import everything to this main styles.css */
+
+@import url("landing.css");
+
+body {
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: rgb(0, 2, 8);
+    color: aliceblue;
+}
+
+a {
+    text-decoration: none;
+    color: #0095ff;
+}
+
