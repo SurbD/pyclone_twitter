@@ -2,6 +2,7 @@
 ...or page and import everything to this main styles.css */
 
 @import url("landing.css");
+@import url("login.css");
 
 body {
     margin: 0;

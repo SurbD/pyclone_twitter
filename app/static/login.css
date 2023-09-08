@@ -1,0 +1,267 @@
+
+/* .wrapper .login-container::-webkit-scrollbar {
+    align-self: start;
+    width: 10px;
+}
+
+::-webkit-scrollbar
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+    background: #88888800;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+} */
+
+.overlay {
+    position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: rgba(69, 78, 86, 0.4);
+	transition: opacity 500ms;
+	/* visibility: hidden; */
+	/* opacity: 0; */
+}
+
+/* .overlay:target {
+	visibility: visible;
+	opacity: 1;
+} */
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+	margin: 40px auto;
+	padding: 15px 25px;
+	background: #010101;
+	border-radius: 16px;
+	width: 550px;
+	position: relative;
+	transition: all 2s ease-in-out;
+}
+.wrapper svg {
+    align-self: center;
+    width: 1.98em;
+	margin-top: 0;
+	fill: #fff;
+}
+.wrapper .close {
+	position: absolute;
+	top: 20px;
+	left: 20px;
+	transition: all 200ms;
+	font-size: 1.4em;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+	text-decoration: none;
+	color: #ffffff;
+}
+
+
+.wrapper .login-wrapper {
+    /* border: 1px solid wheat; */
+    overflow: auto;
+    /* max-height: 30%; */
+    height: 75vh;
+    /* display: flex; */
+    /* align-items: center; */
+    /* justify-content: center; */
+    
+}
+.wrapper .h-change {
+    height: 100%;
+}
+
+.wrapper .login-container {
+    /* text-align: center; */
+    /* border: 1px solid white; */
+    /* height: 75vh; */
+    width: 60%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+	overflow: auto;
+}
+
+.wrapper .expand-70 {
+    width: 80%;
+}
+
+.login-container .login-heading{
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+.login-container .login-link-x {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.btn-submit {
+    border: none;
+    font-weight: 600;
+    font-size: 1em;
+    color: #000000d7;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+
+.bd-line-dim {
+    border-color: #a2c4ff74;
+}
+
+.blue-text {
+    color: #0095ff;
+}
+
+.no-gap {
+    gap: 8px;
+}
+
+.mb-40 {
+    margin-bottom: 60px;
+}
+
+
+.forgot-text {
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 0.89em;
+}
+
+.form-btn {
+    padding: 8px 16px;
+}
+
+
+/* Input Field */
+.input-box {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #b0b0b071;
+    border-radius: 4px;
+    padding: 18px 8px;
+    /* line-height: 1.3em; */
+}
+
+.input-box:has(.form-lg:focus){
+    border: 2px solid #0095ff;
+    padding: 4px 8px;
+    .form-label {
+        display: block;
+        font-size: 0.8em;
+        color: #0095ffcd;
+        margin-bottom: 8px;
+    }
+}
+
+.form-lg {
+    background-color: #00000000;
+    border: none;
+    font-size: 1em;
+    color: #ffffff;
+}
+
+.form-lg:focus {
+    outline: none;
+}
+.form-lg:focus::placeholder {
+    color: transparent;
+}
+
+.form-label {
+    display: none;
+}
+
+.alert {
+    position: absolute;
+	bottom: 10px;
+	left: auto;
+    right: auto;
+    padding: 5px 15px;
+    border-radius: 4px;
+    background-color: #0095ffcd;
+
+    display: flex;
+    width: 50%;
+    /* margin: 0 auto; */
+    font-size: 0.88em;
+    gap: 15px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.alert .x-close {
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    color: #b0b0b071;
+}
+.alert .x-close:hover {
+    color: #fff;
+}
+.alert-success {
+    background-color: #0095ff;
+}
+
+.alert-danger {
+    background-color: #fa1c1c12;
+}
+
+.redirect-x {
+    font-size: 0.88em;
+    color: #b0b0b071;
+    align-self: flex-start;
+    margin: 25px 0;
+}
+
+.login-container .p-header {
+    font-size: 1.8em;
+
+}
+
+.user-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    gap: 5px;
+    background-color: #7878782a;
+    padding: 6px 14px;
+    color: #868484a6;
+    border-radius: 4px;
+    /* width: 100%; */
+}
+
+.username-label {
+    margin: 0;
+}
+
+.username {
+    margin: 0;
+    font-size: 1em;
+}
+
+.expand-flex {
+    justify-content: space-between;
+    /* height: 100%; */
+}
+.mb-10 {
+    margin-bottom: 10px;
+}

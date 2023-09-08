@@ -1,11 +1,16 @@
 from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
 
-from app.config import Config
+from app.config import config
 
+# db = SQLAlchemy()
 
-def create_app(Config=Config):
+def create_app(config_name):
     app = Flask(__name__)
-    app.config.from_object(Config)
+    app.config.from_object(config[config_name])
+    config[config_name].init_app(app)
+
+    # db.init_app(app)
 
     from app.main.routes import main
     from app.auth.routes import auth

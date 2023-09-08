@@ -28,9 +28,14 @@
                 </div>
                 <div class="landing-link small-info">
                     <p>Already have an account?</p>
-                    <a href="#" class="link-btn ghost-style">Sign in</a>
+                    <a href="{{ url_for('auth.login')}}" class="link-btn ghost-style">Sign in</a>
                 </div>
+                {% include 'login.html'%}
             </div>
         </div>
     </div>
+    <div class="footer text-muted">
+        <span class="footer-links"><a href="#">About</a> <a href="#">Help Center</a> <a href="#">Terms of Service</a> <a href="#">Privacy Policy</a> <a href="#">Cookie Policy</a> <a href="#">Accessibility</a> <a href="#">Ads info</a> <a href="#">Blog</a> <a href="#">Status</a> <a href="#">Careers</a> <a href="#">Brand Resources</a> <a href="#">Advertising</a> <a href="#">Marketing</a> <a href="#">X for Business</a> <a href="#">Developers</a> <a href="#">Directory</a> <a href="#">Settings</a> <a href="#">© 2023 X Corp.</a></span>
+    </div>
+    
 {% endblock %}

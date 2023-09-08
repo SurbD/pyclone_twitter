@@ -13,6 +13,26 @@
     {% endif %}
 </head> 
 <body>
-    {% block content %}{% endblock %}
+    <header></header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    <footer>
+        {% block footer %}{% endblock %}
+    </footer>
+
+    {% block scripts %}
+        <!-- JavaScript for Flash Alert Canceling -->
+        <script>
+            function dataDismiss() {
+                var x = document.getElementById("alert_id");
+                if (x.style.display === "none") {
+                    x.style.display = "block";
+                } else {
+                    x.style.display = "none";
+                }
+            }
+        </script>
+    {% endblock %}
 </body>
 </html>

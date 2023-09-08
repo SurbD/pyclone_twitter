@@ -1,9 +1,10 @@
 .section {
     display: flex;
     width: 100%;
-    height: 100vh;
+    /* height: 0vh; */
     display: flex;
     justify-content: center;
+    margin: 40px auto;
 }
 
 /* Font Awesome Icons */
@@ -24,8 +25,8 @@
 
 /* Landing Page Section */
 .landing-section {
-    width: 90%;
-    /* margin: 50px auto; */
+    width: 100%;
+    margin-bottom: 25px;
     display: flex;
     justify-content: center;
 }
@@ -35,7 +36,7 @@
     display: flex;
     justify-content: center;
     /* border: 1px solid rgb(224, 204, 204); */
-    /* width: 40%; */
+    width: 58%;
 }
 
 .landing-section-xlogo svg {
@@ -78,7 +79,7 @@
     gap: 10px;
 }
 
-.landing-link .link-btn {
+.link-btn {
     /* text-align: center; */
     border-radius: 20px;
     background-color: white;
@@ -97,7 +98,7 @@
 }
 
 /* Styling classes */
-.landing-link .blue-it {
+.blue-it {
     background-color: #0095ff;
 }
 
@@ -133,9 +134,37 @@
     font-weight: 600;
 }
 
-.small-info .ghost-style {
+.ghost-style {
     background-color: rgba(0, 0, 0, 0.002);
-    border: 1px solid #ffffffc0;
+    border: 1px solid #ffffff;
 }
 
 /* End of Landing Page Section */
+
+.footer {
+    margin: 15px auto;
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+}
+
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.8em;
+
+}
+
+.footer-links a {
+    margin: 0 10px;
+    font-size: 1.1em;
+    font-weight: lighter;
+    color: #b0b0b0a8;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+    color: #0095ff;
+}

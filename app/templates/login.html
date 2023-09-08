@@ -1,0 +1,74 @@
+
+{% if popup %}
+    <div class="overlay" style="visibility: visible; opacity: 1;">
+        <div class="wrapper">
+            <svg class="x-logo" width="10%" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" version="1.1">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+            <a class="close" href="{{url_for('main.index')}}">&times;</a>
+            {% if not next %}
+                <div class="login-wrapper">
+                    <div class="login-container">
+                       <!-- Email Login Page -->
+                        <h3 class="login-heading">Sign in to X</h3>
+                        <div class="landing-link login-link-x">
+                            <a href="#" class="link-btn"><i class="fa-brands fa-google"></i><span class="link-btn-text">Sign up with Google</span></a>
+                            <a href="#" class="link-btn"><i class="fa-brands fa-apple"></i></i><span class="link-btn-text">Sign up with Apple</span></a>
+                        </div>
+                        <div class="or-gap">
+                            <span class="dash"></span> or <span class="dash"></span>
+                        </div>
+                      
+                        <form action="" method="POST">
+                            {{ form.hidden_tag() }}
+                            <div class="login-form">
+                                <div class="form-group">
+                                    <div class="input-box">
+                                        <!-- {{form.email.label(class="form-label")}} -->
+                                        <label class="form-label" for="">Phone, email, or username</label>
+                                        {{ form.email(class="form-lg", placeholder="Phone, email, or username") }}
+                                    </div>
+                                </div>
+                                <div class="form-group landing-link">
+                                    {{ form.submit(class="btn-submit link-btn") }}
+                                    <a href="" class="ghost-style link-btn form-btn bd-line-dim forgot-text">Forgot Password?</a>
+                                </div>
+                            </div>
+                        </form>
+                        <span class="redirect-x">Don't have an account? <a href="{{ url_for('main.index')}}">Sign up</a></span>
+                        {% include 'flash_template.html' %}
+                    </div>
+                </div>
+            {% else %}
+                <div class="login-wrapper h-change">
+                    <div class="login-container expand-70">
+                        <!-- Password Login Page -->
+                        <h3 class="login-heading p-header">Enter your password</h3>
+                        <div class="user-box">
+                            <small class="username-label">{{ email_data[0] }}</small>
+                            <p class="username">{{ email_data[1] }}</p>
+                        </div>
+
+                        <form action="" method="POST">
+                            {{ form.hidden_tag() }}
+                            <div class="login-form">
+                                <div class="form-group no-gap expand-flex mb-40">
+                                    <div class="input-box mb-3">
+                                        {{form_password.password.label(class="form-label")}}
+                                        {{ form_password.password(class="form-lg", placeholder="Password") }}
+                                    </div>
+                                    <a href="" class="text-muted blue-text">Forgot Password?</a>
+                                </div>
+                                <div class="form-group landing-link">
+                                    {{ form_password.submit(class="btn-submit link-btn") }}
+                                </div>
+                            </div>
+                        </form>
+                        <span class="redirect-x mb-10">Don't have an account? <a href="{{ url_for('main.index')}}">Sign up</a></span>
+                        {% include 'flash_template.html' %}
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endif %}

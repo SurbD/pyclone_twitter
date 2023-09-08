@@ -15,3 +15,12 @@ class LoginForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()])
     remember = BooleanField('Remember Me')
     submit = SubmitField('Sign Up')
+
+# Test Forms
+class LoginEmailForm(FlaskForm):
+    email = EmailField('Email', validators=[DataRequired(), Email()])
+    submit = SubmitField('Next')
+
+class LoginPasswordForm(FlaskForm):
+    password = PasswordField('Password', validators=[DataRequired()])
+    submit = SubmitField('Log in')
