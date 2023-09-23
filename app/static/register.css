@@ -1,0 +1,110 @@
+.x-label {
+    display: block;
+    margin-top: 12px;
+    font-weight: bold;
+}
+
+.dob-info {
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+.mtb-50-10 {
+    margin-top: 50px;
+    margin-bottom: 10px;
+}
+
+#second-page {
+    visibility: hidden;
+}
+
+.active:target {
+    visibility: visible;
+}
+
+.wrapper .page-nav-info {
+    margin-top: 12px;
+    font-weight: 700;
+    margin-left: 30px;
+    align-self: flex-start;
+}
+
+/* Multistep Form Trial */
+input.invalid {
+    background-color: #ffdddd;
+}
+
+/* Hide all steps by default */
+.tab {
+    display: none;
+}
+
+.x-close {
+    display: none;
+    position: absolute;
+	top: 20px;
+	left: 20px;
+	transition: all 200ms;
+	font-size: 1.4em;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+	text-decoration: none;
+	color: #ffffff;
+}
+
+.btn-close {
+    background: none;
+    color: white;
+    align-self: start;
+    border: none;
+    cursor: pointer;
+}
+
+/* .page-navbar {
+    display: flex;
+    align-items: space-between;
+    justify-content: center;
+    border: 1px solid aqua;
+    align-self: flex-start;
+}
+.prev {
+    justify-content: center;
+    align-self: center;
+}*/
+
+.page-nav-info {
+    align-self: center;
+	margin: 20px 0;
+    padding-left: 20px;
+} 
+
+/* Customize Experience Tab */
+
+.tab-heading {
+    font-size: 2em;
+    margin-bottom: 40px;
+    margin-top: 0;
+}
+
+.terms-info {
+    font-size: 1.25em;
+    margin-bottom: 5px;
+}
+
+.terms-agree {
+    display: flex;
+    gap: 10px;
+}
+
+.terms-agree p {
+    font-size: 0.85em;
+    color: rgb(212, 212, 212);
+}
+
+.inactive-btn {
+    background: #b0b0b071;
+    color: #000000d7;
+}
+
+/* .mbx {
+    margin-bottom: 50px;
+} */

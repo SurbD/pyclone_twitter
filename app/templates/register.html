@@ -1,28 +1,107 @@
 {% extends 'layout.html' %}
+
 {% block content %}
-    <form action="" method="POST">
-        {{ form.hidden_tag() }}
-        <fieldset>
-            <legend>{{ title|title }}</legend>
-            <div class="form-group">
-                {{ form.username.label }}
-                {{ form.username }}
+    <div class="overlay" style="visibility: visible; opacity: 1;">
+        <div class="wrapper ">
+            <a class="x-close" onclick="nextPrev(-1)" id="close" href="{{url_for('main.index')}}"><i class="fa-solid fa-xmark" style="color: #ffffff; font-size: 0.9em"></i></a>
+            <button type="button" class="x-close btn-close" onclick="nextPrev(-1)" id="prevBtn"><i class="fa-solid fa-arrow-left-long" style="color: #ffffff; font-size: 0.9em;"></i></button>
+            <span class="page-nav-info step" id="step"></span>
+            <div class="login-wrapper">
+                <div class="login-container expand-70">
+                    <form name="registration-form" action="" id="regForm" method="POST" enctype="multipart/form-data">
+                        {{ form.hidden_tag() }}
+                        <div class="tab">
+                            <!-- REgistration Form -> Tab 1 -->
+                            <div class="input-box">
+                                {{ form.name(class="form-lg", placeholder="Name", oninput="this.className", onfocusout="checkFormValidity()") }}
+                            </div>
+                            <div class="input-box">
+                                {{ form.email(class="form-lg", placeholder="Email", oninput="this.className", onfocusout="emailValidate()" ) }} <!--, onfocusout="checkIfUserExists()"-->
+                                <div id="email-error"></div>
+                            </div>
+                            <div class="input-box">
+                                {{ form.date_of_birth(class="form-lg", oninput="this.className", onfocusout="checkFormValidity()") }}
+                            </div>
+                        </div>
+                        <div class="tab">
+                            <!-- Customize Your Experience -> Tab 2 -->
+                            <h3 class="tab-heading">Customize your Experience</h3>
+                            <h4 class="terms-info">Track where you see X content across the web</h4>
+                            <div class="terms-agree">
+                                <p>X uses this data to personalize your experience. This web browsing history will never be 
+                                    stored with your name, email or phone number.
+                                </p>
+                                <input type="checkbox" name="agreement" id="terms-n-condition" onclick="agreeChecked()">
+                            </div>
+                            <div class="landing-terms text-muted mbx">
+                                By signing up, you agree to our <a href="">Terms</a>, <a href="">Privacy Policy</a>, and <a href="">Cookie Use</a>. 
+                                X may use your contact information including your email address and phone number for purposes outlined in our 
+                                Privacy Policy. <a href="">Learn more</a>
+                            </div>
+                        </div>
+                        <div class="tab">
+                            <!-- Create Your Account -> Tab 3 -->
+                            <h3 class="tab-heading">Create Your Account</h3>
+                            <div class="account-info">
+                                <div class="account-box">
+                                    <small class="username-label">{{form.name.label}}</small>
+                                    <div class="username-box">
+                                        <span class="user-data" id="form-name"></span>
+                                        <i class="fa-sharp fa-solid fa-circle-check" style="color: #0aff74;"></i>
+                                    </div>
+                                </div>
+                                <div class="account-box">
+                                    <small class="email-label">{{form.email.label}}</small>
+                                    <div class="email-box">
+                                        <span class="email-data" id="form-email"></span>
+                                        <i class="fa-sharp fa-solid fa-circle-check" style="color: #0aff74;"></i>
+                                    </div>
+                                </div>
+                                <div class="account-box">
+                                    <small class="dob-label">{{form.date_of_birth.label}}</small>
+                                    <div class="dob-box">
+                                        <span class="dob-data" id="form-date_of_birth"></span>
+                                        <i class="fa-sharp fa-solid fa-circle-check" style="color: #0aff74;"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <small class="landing-terms text-muted">By signing up, you agree to our <a href="">Terms</a>, <a href="">Privacy Policy</a>, and <a href="">Cookie Use</a>.
+                                 X may use your contact information, including your email address and phone number for purposes 
+                                 outlined in our Privacy Policy. <a href="">Learn more</a></small>
+                        </div>
+                        <div class="tab">
+                            <!-- Code Verification -> Tab 4 -->
+                            <h3>We Sent you a Code</h3>
+                            <small>Enter it below to verify your account</small>
+                            <div class="input-box"> 
+                                {{ form.verification_code(class="form-lg", placeholder="Verification Code", oninput="this.className=''")}}
+                            </div>
+                        </div>
+                        <div class="tab">
+                            <!-- Password Input Form -> Tab 5 -->
+                            <h3>You'll need a password</h3>
+                            <small>Make sure it's 8 characters or more</small>
+                            <div class="input-box">
+                                {{ form.password(class="form-lg", placeholder="Password", oninput="this.className") }}
+                            </div>
+                        </div>
+
+                        <div class="form-group landing-link">
+                            {{ form.submit(class="btn-submit link-btn mtb-50-10", id="submitBtn", style="display: none;")}}
+                            {{ form.submit(class="btn-submit link-btn mtb-50-10", id="nextBtn", onclick="nextPrev(1)", style="display: inline;")}}
+                            <!-- <button type="button" class="link-btn btn-submit mtb-50-10" id="nextBtn" onclick="nextPrev(1)">Next</button> -->
+                        </div>
+                        <!-- <h2 id="info-log"> Info</h2> -->
+                        <!-- <h2 id="text-log">Null</h2> -->
+                        <!-- <div id="form-data" data-form="{{ form.__dict__|safe }}" data-name='{{ form.name.validate(form)|tojson }}' data-email='{{ form.email.data|tojson}}'></div> -->
+                    </form>
+                    {% block scripts %}
+                    {{ super() }}
+                    <script type="text/javascript" src="{{ url_for('static', filename='js/validate_users.js') }}"></script>
+                    <script type="text/javascript" src="{{ url_for('static', filename='js/registration_form.js') }}"></script>
+                    {% endblock %}
+                </div>
             </div>
-            <div class="form-group">
-                {{ form.email.label }}
-                {{ form.email }}
-            </div>
-            <div class="form-group">
-                {{ form.password.label }}
-                {{ form.password }}
-            </div>
-            <div class="form-group">
-                {{ form.confirm_password.label }}
-                {{ form.confirm_password }}
-            </div>
-        </fieldset>
-        <div class="button">
-            {{ form.submit }}
         </div>
-    </form>
+    </div>
 {% endblock %}

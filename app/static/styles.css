@@ -3,6 +3,7 @@
 
 @import url("landing.css");
 @import url("login.css");
+@import url("register.css");
 
 body {
     margin: 0;

@@ -1,38 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width={device-width}, initial-scale=1.0">
-    <script src="https://kit.fontawesome.com/3d39008166.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-
-    {% if title %}
+    {% block head %}
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://kit.fontawesome.com/3d39008166.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+        
+        {% if title %}
         <title>{{ title }} X-Corps</title>
-    {% else %}
-        <title>{{ title }} X-Corps</title>
-    {% endif %}
+        {% else %}
+        <title>X-Corps</title>
+        {% endif %}
+    {% endblock %}
 </head> 
 <body>
     <header></header>
     <main>
-        {% block content %}{% endblock %}
+        {% block content %}{% endblock %} 
     </main>
     <footer>
         {% block footer %}{% endblock %}
     </footer>
 
     {% block scripts %}
-        <!-- JavaScript for Flash Alert Canceling -->
-        <script>
-            function dataDismiss() {
-                var x = document.getElementById("alert_id");
-                if (x.style.display === "none") {
-                    x.style.display = "block";
-                } else {
-                    x.style.display = "none";
-                }
-            }
-        </script>
+        <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
     {% endblock %}
 </body>
 </html>

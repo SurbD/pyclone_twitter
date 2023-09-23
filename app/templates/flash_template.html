@@ -3,7 +3,7 @@
         {% for category, message in messages %}
             <div id="alert_id" class="alert alert-{{ category }}">
                 {{ message }}
-                <button class="x-close" onclick="dataDismiss()" aria-label="Close">&times;</button>
+                <button class="alert-close" onclick="dataDismiss()" aria-label="Close">&times;</button>
             </div>
         {% endfor %}
     {% endif %}

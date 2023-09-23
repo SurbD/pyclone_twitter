@@ -5,6 +5,15 @@ class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY', 'toplevel secret key')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
+    MAIL_SERVER = 'smtp.gmail.com'
+    MAIL_PORT = 465
+    MAIL_USE_SSL = True
+    MAIL_USERNAME = os.environ.get('EMAIL_USER')
+    MAIL_PASSWORD = os.environ.get('EMAIL_PASS')
+
+    XCLONE_MAIL_SUBJECT_PREFIX = '[Xcorps Clone]'
+    XCLONE_MAIL_SENDER = 'Xcorps Admin <noreply@xcorp.com>'
+    
     @staticmethod
     def init_app(app):
         pass
