@@ -10,7 +10,7 @@
 }
 
 .mtb-50-10 {
-    margin-top: 50px;
+    margin-top: 30px;
     margin-bottom: 10px;
 }
 
@@ -81,7 +81,7 @@ input.invalid {
 
 .tab-heading {
     font-size: 2em;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
     margin-top: 0;
 }
 
@@ -93,6 +93,7 @@ input.invalid {
 .terms-agree {
     display: flex;
     gap: 10px;
+    margin-bottom: 30px;
 }
 
 .terms-agree p {
@@ -105,6 +106,64 @@ input.invalid {
     color: #000000d7;
 }
 
-/* .mbx {
-    margin-bottom: 50px;
-} */
+.blued-btn {
+    background: #0095ff;
+    color: aliceblue;
+}
+
+.mb25 {
+    margin-top: 25px;
+}
+
+.form-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 1.56em;
+}
+
+.bold-lb {
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 0.89em;
+}
+
+.account-info {
+    margin-bottom: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+}
+
+.account-box {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #b0b0b071;
+    border-radius: 4px;
+    padding: 6px 12px;
+    gap: 5px;
+
+    /* padding: 18px 8px; */
+}
+
+.xname-box {
+    width: 100%;
+    /* border: 1px solid grey; */
+    display: flex;
+    justify-content: space-between;
+}
+
+.tab-four {
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6em;
+}
+
+.tab-four-heading {
+    font-size: 1.8em;
+    margin: 0;
+}
+
+.tab-four-info {
+    font-size: 0.89em;
+}

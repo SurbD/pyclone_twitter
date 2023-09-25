@@ -1,5 +1,6 @@
 from flask import (Blueprint, render_template, flash,
                     redirect, url_for, session, request, jsonify)
+from flask_login import current_user, login_user, logout_user
 
 from app.auth.forms import (RegistrationForm, LoginForm,
                              LoginEmailForm, LoginPasswordForm)
@@ -12,6 +13,9 @@ auth = Blueprint('auth', __name__)
 
 @auth.route('/login', methods=["GET", "POST"])
 def login():
+    if current_user.is_authenticated:
+        return redirect(url_for('main.home'))
+
     form_email = LoginEmailForm()
     form_password = LoginPasswordForm()
 
@@ -22,9 +26,9 @@ def login():
     email_data = None
 
     if form_email.validate_on_submit():
-        user = User.query.filter_by(email=form_email.email.data).first()
+        user = User.query.filter_by(email=form_email.email.data.lower()).first()
         if user:
-            session['email_data'] = form_email.email.label(), form_email.email.data
+            session['email_data'] = form_email.email.label(), form_email.email.data.lower()
             # session['login_user'] = user
 
             session['next'] = True
@@ -40,11 +44,21 @@ def login():
         user = User.query.filter_by(email=email).first()
 
         if user and bcrypt.check_password_hash(user.password, form_password.password.data):
-            flash('Login Successful', 'success')
-            return redirect(url_for('main.index'))
+            login_user(user, remember=True)
+            # if request.args.get('next') and request.args.get('next') != '/logout':
+            #     next_page = request.args.get('next')
+            # else:
+            #     next_page = url_for('main.home')
+            next_page = request.args.get('next')
+
+            if next_page == '/logout':
+                next_page = None
+            # flash('Login Successful', 'success')
+            return redirect(next_page) if next_page else redirect(url_for('main.home'))
         else:
             session['count'] = 1
             flash('Invalid Password!', 'danger')
+            # flash('Login Unsuccessful, Please check email and password', 'danger')
             return redirect(url_for('auth.login'))
 
     elif request.method == "GET":
@@ -63,13 +77,16 @@ def login():
 
 @auth.route("/register", methods=['GET', 'POST'])
 def register():
+    if current_user.is_authenticated:
+        return redirect(url_for('main.home'))
+
     form = RegistrationForm()
     # form.name.data = "Devyn44"
     # print('REGGY')
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-        user = User(username=form.name.data, 
-                    email=form.email.data, password=hashed_password, 
+        user = User(username=form.username.data.lower(), 
+                    email=form.email.data.lower(), password=hashed_password, 
                     date_of_birth=form.date_of_birth.data, confirmed=True)
          
         db.session.add(user)
@@ -82,14 +99,22 @@ def register():
     return render_template('register.html', form=form, title='Register', items=[form, 'valid'])
 
 
+@auth.route("/logout")
+def logout():
+    logout_user()
+    return redirect(url_for('auth.login'))
+
+
 # Routes API call from Axios
 
 @auth.route("/validate-email", methods=['POST'])
 def validate_email():
-    # For Javascript email validation
+    # For Javascript email validation, 
+    # this will later become on with the validate 
+    # inputs when it starts returning a message there will be no need for this
 
     if request.method == 'POST':
-        email = request.get_json()['email']
+        email = request.get_json()['email'].lower()
         user = User.query.filter_by(email=email).first() # SetUp DB
         if user:
             return jsonify({'user_exists': True})
@@ -105,14 +130,14 @@ def validate_inputs():
     if request.method == "POST":
         form_data = request.get_json()
         # print(form_data)
-        form.name.data = form_data['name']
-        form.email.data = form_data['email']
+        form.username.data = form_data['username'].lower()
+        form.email.data = form_data['email'].lower()
         form.date_of_birth.data = form_data['date_of_birth']
 
         email_validate = form.email.validate(form) and form.validate_email(form.email)
-        name_validate = form.name.validate(form)
+        username_validate = form.username.validate(form) and form.validate_username(form.username)
         dob_validate = form.date_of_birth.validate(form)
-        isAllValid = email_validate and name_validate and dob_validate
+        isAllValid = email_validate and username_validate and dob_validate
 
         return jsonify({
             'isValid': isAllValid,
@@ -121,8 +146,8 @@ def validate_inputs():
                     'isvalid': email_validate,
                     'message': None
                 },
-                'name': {
-                    'isValid': name_validate,
+                'username': {
+                    'isValid': username_validate,
                     'message': None
                 },
                 'date_of_birth': {
@@ -140,18 +165,18 @@ def get_verification_code():
     
     if request.method == 'POST':
         user_data = request.get_json()
-        email = user_data['email']
-        name = user_data['name']
+        email = user_data['email'].lower()
+        username = user_data['username'].lower()
 
         token, code = get_vcode().values()
         session['verification_token'] = token
 
         try:
             send_email(email, 'Confirm Email Address',
-                        'email/confirm_new_user', code=code, name=name)
+                        'email/confirm_new_user', code=code, username=username)
         except Exception as e:
-            print(e)
-            print('ENAD-------------')
+            # print(e)
+            # print('ENAD-------------')
             success = False
         else:
             success = True

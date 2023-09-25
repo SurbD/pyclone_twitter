@@ -5,7 +5,7 @@
             <svg class="x-logo" width="10%" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" version="1.1">
                 <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
             </svg>
-            <a class="close" href="{{url_for('main.index')}}">&times;</a>
+            <a class="close" href="{{url_for('main.home')}}">&times;</a>
             {% if not next %}
                 <div class="login-wrapper">
                     <div class="login-container">
@@ -35,7 +35,7 @@
                                 </div>
                             </div>
                         </form>
-                        <span class="redirect-x">Don't have an account? <a href="{{ url_for('main.index')}}">Sign up</a></span>
+                        <span class="redirect-x">Don't have an account? <a href="{{ url_for('main.home')}}">Sign up</a></span>
                         {% include 'flash_template.html' %}
                     </div>
                 </div>
@@ -64,7 +64,7 @@
                                 </div>
                             </div>
                         </form>
-                        <span class="redirect-x mb-10">Don't have an account? <a href="{{ url_for('main.index')}}">Sign up</a></span>
+                        <span class="redirect-x mb-10">Don't have an account? <a href="{{ url_for('main.home')}}">Sign up</a></span>
                         {% include 'flash_template.html' %}
                     </div>
                 </div>

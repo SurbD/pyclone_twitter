@@ -1,4 +1,4 @@
-var currentTab = 0;
+var currentTab = 4;
 
 showTab(currentTab);
 
@@ -18,21 +18,35 @@ function showTab(n) {
         document.getElementById("prevBtn").style.display = "inline";
     }
 
+    // Button color for Tab 3
+    if (n == 2) {
+        document.getElementById("nextBtn").classList.add("blued-btn");
+        
+    } else {document.getElementById("nextBtn").classList.remove("blued-btn");}
+    // End of Button color for Tab 3
+
     if (n == (x.length - 1)) {
-        // document.getElementById("nextBtn").innerHTML = "Submit";
+        document.getElementById("submitBtn").value = "Next";
         document.getElementById("nextBtn").style.display = "none";
         document.getElementById("submitBtn").style.display = "inline";
     } else if (n == 2) {
-        document.getElementById("nextBtn").innerHTML = "Sign up";
+        document.getElementById("nextBtn").value = "Sign up";
+        // document.getElementById("nextBtn").innerHTML = "Sign up";
     } else {
-        document.getElementById("nextBtn").innerHTML = "Next";
+        // document.getElementById("nextBtn").innerHTML = "Next";
+        document.getElementById("nextBtn").value = "Next"
     }
 
     if (n == 2) {
         const reg_form = document.forms['registration-form']
-        document.getElementById("form-name").innerText = reg_form['name'].value
-        document.getElementById("form-email").innerText = reg_form['email'].value
+        document.getElementById("form-username").innerText = reg_form['username'].value
+        document.getElementById("form-email").innerText = reg_form['email'].value.toLowerCase();
         document.getElementById("form-date_of_birth").innerText = reg_form['date_of_birth'].value
+    }
+
+    if (n == 3) {
+        const reg_form = document.forms['registration-form']
+        document.getElementById("user-email-data").innerText = reg_form['email'].value.toLowerCase()
     }
 
     if (n == 1) {

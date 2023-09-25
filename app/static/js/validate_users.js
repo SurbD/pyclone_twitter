@@ -29,7 +29,7 @@ function checkIfUserExists() {
 function formTest() {
     const reg_form = document.forms['registration-form']
     const data = {
-        name: reg_form['name'].value,
+        username: reg_form['username'].value,
         email: reg_form['email'].value,
         date_of_birth: reg_form['date_of_birth'].value
     }
@@ -62,10 +62,10 @@ function emailValidate() {
 
 
 function sendVerification() {
-    const name = document.getElementById("form-name").innerText;
+    const username = document.getElementById("form-username").innerText;
     const email = document.getElementById("form-email").innerText
     const data = {
-        name: name,
+        username: username,
         email: email
     }
 

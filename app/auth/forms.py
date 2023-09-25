@@ -4,9 +4,11 @@ from wtforms import (StringField, PasswordField, EmailField,
 from wtforms.validators import DataRequired, Length, Email, Regexp
 from wtforms import ValidationError
 
+from app.models import User
+
 
 class RegistrationForm(FlaskForm):
-    name = StringField('Name', validators=[
+    username = StringField('Username', validators=[
         DataRequired(), Length(min=5, max=50),
         Regexp(r"^[A-Za-z][A-Za-z0-9_.]*$", 0, 
                'Usernames must have only letters, numbers, dots or underscores')])
@@ -18,14 +20,17 @@ class RegistrationForm(FlaskForm):
     submit = SubmitField('Sign Up')
 
     def validate_email(self, email):
-        if email.data.lower() == 'admin@blog.com':
+        user = User.query.filter_by(email=email.data.lower()).first()
+        if user:
             return False
             # raise ValidationError('Email already Registered!. Please try again')
         return True
         
-    def validate_name(self, name):
-        if name.data.lower() == 'admin':
-            raise ValidationError("User with that name already exists. Please choose a different name")
+    def validate_username(self, username):
+        user = User.query.filter_by(email=username.data.lower()).first()
+        if user:
+            return False # message - "User with that name already exists. Please choose a different name")
+        return True
 
 class LoginForm(FlaskForm):
     email = EmailField('Email', validators=[DataRequired(), Email()])
