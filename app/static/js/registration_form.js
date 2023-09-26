@@ -1,4 +1,4 @@
-var currentTab = 4;
+var currentTab = 0;
 
 showTab(currentTab);
 

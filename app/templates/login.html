@@ -36,7 +36,6 @@
                             </div>
                         </form>
                         <span class="redirect-x">Don't have an account? <a href="{{ url_for('main.home')}}">Sign up</a></span>
-                        {% include 'flash_template.html' %}
                     </div>
                 </div>
             {% else %}
@@ -65,7 +64,6 @@
                             </div>
                         </form>
                         <span class="redirect-x mb-10">Don't have an account? <a href="{{ url_for('main.home')}}">Sign up</a></span>
-                        {% include 'flash_template.html' %}
                     </div>
                 </div>
             {% endif %}

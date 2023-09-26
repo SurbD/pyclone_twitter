@@ -53,7 +53,7 @@ def login():
 
             if next_page == '/logout':
                 next_page = None
-            # flash('Login Successful', 'success')
+            flash('Login Successful', 'success')
             return redirect(next_page) if next_page else redirect(url_for('main.home'))
         else:
             session['count'] = 1

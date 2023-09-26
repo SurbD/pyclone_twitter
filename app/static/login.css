@@ -183,18 +183,21 @@
 }
 
 .alert {
-    position: absolute;
-	bottom: 10px;
-	left: auto;
-    right: auto;
-    padding: 5px 15px;
+    position: fixed;
+    top: 20px;
+	bottom: auto;
+	/* left: 10px; */
+    right: 20px;
+    padding: 0 12px;
+    line-height: 3.5em;
     border-radius: 4px;
-    background-color: #0095ffcd;
+    background-color: #0095ff;
 
     display: flex;
-    width: 50%;
+    /* width: 50%; */
     /* margin: 0 auto; */
-    font-size: 0.88em;
+    z-index: 12;
+    font-size: 0.98em;
     gap: 15px;
     justify-content: space-between;
     align-items: center;
@@ -204,7 +207,7 @@
     background: none;
     border: none;
     font-size: 1.5em;
-    color: #b0b0b071;
+    color: #b0b0b09b;
 }
 .alert .alert-close:hover {
     color: #fff;
@@ -214,7 +217,7 @@
 }
 
 .alert-danger {
-    background-color: #fa1c1c12;
+    background-color: #fa1c1cb9;
 }
 
 .redirect-x {
