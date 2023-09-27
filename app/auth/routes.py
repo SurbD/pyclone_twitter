@@ -29,7 +29,6 @@ def login():
         user = User.query.filter_by(email=form_email.email.data.lower()).first()
         if user:
             session['email_data'] = form_email.email.label(), form_email.email.data.lower()
-            # session['login_user'] = user
 
             session['next'] = True
             session['count'] = 1
@@ -40,15 +39,10 @@ def login():
         
     elif form_password.validate_on_submit():
         email = session['email_data'][1]
-        # user = session['login_user']
         user = User.query.filter_by(email=email).first()
 
         if user and bcrypt.check_password_hash(user.password, form_password.password.data):
             login_user(user, remember=True)
-            # if request.args.get('next') and request.args.get('next') != '/logout':
-            #     next_page = request.args.get('next')
-            # else:
-            #     next_page = url_for('main.home')
             next_page = request.args.get('next')
 
             if next_page == '/logout':
@@ -58,7 +52,6 @@ def login():
         else:
             session['count'] = 1
             flash('Invalid Password!', 'danger')
-            # flash('Login Unsuccessful, Please check email and password', 'danger')
             return redirect(url_for('auth.login'))
 
     elif request.method == "GET":
@@ -81,8 +74,7 @@ def register():
         return redirect(url_for('main.home'))
 
     form = RegistrationForm()
-    # form.name.data = "Devyn44"
-    # print('REGGY')
+  
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
         user = User(username=form.username.data.lower(), 
@@ -93,9 +85,7 @@ def register():
         db.session.commit()
 
         flash(f'Your account has been created! You are now able to log in', 'success')
-        # print('Form Validated Successfully')
         return redirect(url_for('auth.login'))
-
     return render_template('register.html', form=form, title='Register', items=[form, 'valid'])
 
 
@@ -110,8 +100,8 @@ def logout():
 @auth.route("/validate-email", methods=['POST'])
 def validate_email():
     # For Javascript email validation, 
-    # this will later become on with the validate 
-    # inputs when it starts returning a message there will be no need for this
+    # this will later become on with the validate inputs 
+    # when it starts returning a message there will be no need for this
 
     if request.method == 'POST':
         email = request.get_json()['email'].lower()
@@ -120,8 +110,27 @@ def validate_email():
             return jsonify({'user_exists': True})
         else:
             return jsonify({'user_exists': False})
- 
     return
+
+@auth.route("/validate-username", methods=["POST"])
+def validate_username():
+
+    # Just for testing think of ways to make this part of the overall 
+    # validate function thats the validate-inputs endpoint
+
+    if request.method == 'POST':
+        username = request.get_json()['username'].lower()
+        user = User.query.filter_by(username=username).first()
+
+        if user:
+            message = "That username is taken. Please choose a different one."
+            taken = True
+        else:
+            message = ""
+            taken = False
+        return {'taken': taken, 'message': message}
+        
+            
 
 @auth.route("/validate-inputs", methods=["POST"])
 def validate_inputs():

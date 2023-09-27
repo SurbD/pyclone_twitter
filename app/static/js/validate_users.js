@@ -20,11 +20,49 @@ function checkIfUserExists() {
             console.log(data.user_exists)
             // response.json({ message: 'Request received!', data })
             valid = data.user_exists
+            displayErr(valid)
         })
         .catch(err => console.log(err))
     return valid
 }
 
+// Username Taken Test Function
+// Modify the display err function to take parameters to help it
+//  figure which function its getting called from so it can work for 
+//  both usernameTest and email validation to work with message sent from
+// the Backend or anyone works
+
+function usernameTest() {
+    const registrationForm = document.forms['registration-form']
+    const username = registrationForm['username'].value
+    const data = {
+        username: username
+    }
+
+    const promise = axios.post('/validate-username', data)
+    const dataPromise = promise.then((response) => response.data)
+    
+    return dataPromise
+}
+
+
+function checkIfUserTaken() {
+    usernameTest()
+        .then(data=> {
+            console.log('USerNAME vALIDATION')
+            console.log(data.taken)
+            console.log('---------MESSAGE----------')
+            console.log(data.message)
+            // response.json({ message: 'Request received!', data })
+            taken = data.taken
+            document.getElementById("username-error").innerText = data.message
+        })
+        .catch(err => console.log(err))
+    return taken
+}
+
+
+// End 
 
 function formTest() {
     const reg_form = document.forms['registration-form']
@@ -54,6 +92,10 @@ function checkFormValidity() {
     return isValid
 }
 
+function usernameValidate() {
+    checkIfUserTaken()
+    checkFormValidity()
+}
 
 function emailValidate() {
     checkFormValidity()
@@ -113,12 +155,11 @@ function confirmVerificationCode() {
     return verified
 }
 
-// $(document).ready(function(){
-//     console.log(form)
-//     var x = JSON.parse(form);
 
-//     console.log(x)
-//     $('#text-log').DataTable({
-//         data: x
-//     }) 
-// })
+function displayErr(valid) {
+    if (valid == true) {
+        document.getElementById("email-error").innerText = "Sorry, this email already exists please Login!";
+    } else {
+        document.getElementById("email-error").innerText = "";
+    }
+}

@@ -14,14 +14,19 @@
                             <!-- REgistration Form -> Tab 1 -->
                             <h3 class="tab-heading">Create your account</h3>
                             <div class="form-inputs">
-                                <div class="input-box">
-                                    {{form.username.label(class="form-label")}}
-                                    {{ form.username(class="form-lg", placeholder="Username", oninput="this.className", onfocusout="checkFormValidity()") }}
+                                <div class="contain-inputs">
+                                    <div class="input-box">
+                                        {{form.username.label(class="form-label")}}
+                                        {{ form.username(class="form-lg", placeholder="Username", oninput="this.className", onfocusout="usernameValidate()") }}
+                                    </div>
+                                    <div id="username-error" class="text-muted red-text"></div>
                                 </div>
-                                <div class="input-box">
-                                    {{form.email.label(class="form-label")}}
-                                    {{ form.email(class="form-lg", placeholder="Email", oninput="this.className", onfocusout="emailValidate()" ) }} <!--, onfocusout="checkIfUserExists()"-->
-                                    <div id="email-error"></div>
+                                <div class="contain-inputs">
+                                    <div class="input-box">
+                                        {{form.email.label(class="form-label")}}
+                                        {{ form.email(class="form-lg", placeholder="Email", oninput="this.className", onfocusout="emailValidate()" ) }} <!--, onfocusout="checkIfUserExists()"-->
+                                    </div>
+                                    <div id="email-error" class="text-muted red-text"></div>
                                 </div>
                                 <div class="dob-input">
                                     {{ form.date_of_birth.label(class="bold-lb") }}

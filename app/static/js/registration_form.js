@@ -83,6 +83,7 @@ function validateForm() {
         // valid = True
         console.log('Current Tab is '+ currentTab)
         email_valid = !checkIfUserExists()
+        username_valid = !checkIfUserTaken()
         form_valid = checkFormValidity()
 
         if (email_valid == true && form_valid == true) {
