@@ -49,11 +49,6 @@ function usernameTest() {
 function checkIfUserTaken() {
     usernameTest()
         .then(data=> {
-            console.log('USerNAME vALIDATION')
-            console.log(data.taken)
-            console.log('---------MESSAGE----------')
-            console.log(data.message)
-            // response.json({ message: 'Request received!', data })
             taken = data.taken
             document.getElementById("username-error").innerText = data.message
         })
@@ -98,8 +93,8 @@ function usernameValidate() {
 }
 
 function emailValidate() {
-    checkFormValidity()
     checkIfUserExists()
+    checkFormValidity()
 }
 
 
@@ -163,3 +158,4 @@ function displayErr(valid) {
         document.getElementById("email-error").innerText = "";
     }
 }
+

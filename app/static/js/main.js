@@ -1,3 +1,5 @@
+const notification = document.getElementById("notification");
+const closeBtn = document.getElementById("close");
 
 // JavaScript for Flash Alert Canceling
 function dataDismiss() {
@@ -24,4 +26,22 @@ function agreeChecked() {
         // document.getElementById("nextBtn").style.color = "#000000d7";
     }
     
+}
+
+
+function closeFlash() {
+    notification.classList.remove('notification-show');
+}
+
+function flashPopup(message) {
+    const reg_form = document.forms['registration-form']
+    const username = reg_form['username'].value
+    const email = reg_form['email'].value
+    const date_of_birth = reg_form['date_of_birth'].value
+
+    if (username && email && date_of_birth != "") {
+        document.getElementById('notification-mssg').innerText = message
+        notification.classList.add('notification-show');
+    }
+
 }

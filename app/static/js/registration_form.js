@@ -70,7 +70,7 @@ function nextPrev(n) {
         document.getElementById("regForm").submit();
         return false;
     }
-
+    closeFlash()
     showTab(currentTab);
 }
 
@@ -83,11 +83,14 @@ function validateForm() {
         // valid = True
         console.log('Current Tab is '+ currentTab)
         email_valid = !checkIfUserExists()
-        username_valid = !checkIfUserTaken()
+        // username_valid = !checkIfUserTaken()
         form_valid = checkFormValidity()
 
         if (email_valid == true && form_valid == true) {
             valid = true
+        } else {
+            message = "Invalid form inputs! Please check Username or password and try again."
+            flashPopup(message)
         }
     } else if (currentTab == 1) {
         checked = document.getElementById('terms-n-condition').checked;
@@ -107,7 +110,7 @@ function validateForm() {
 
         if (verified == true) {
             valid = true
-        }
+        } 
     } else {
         valid = true
     }

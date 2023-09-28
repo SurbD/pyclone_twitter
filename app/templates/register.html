@@ -19,14 +19,14 @@
                                         {{form.username.label(class="form-label")}}
                                         {{ form.username(class="form-lg", placeholder="Username", oninput="this.className", onfocusout="usernameValidate()") }}
                                     </div>
-                                    <div id="username-error" class="text-muted red-text"></div>
+                                    <div id="username-error" class="text-muted red-text mgt-5"></div>
                                 </div>
                                 <div class="contain-inputs">
                                     <div class="input-box">
                                         {{form.email.label(class="form-label")}}
                                         {{ form.email(class="form-lg", placeholder="Email", oninput="this.className", onfocusout="emailValidate()" ) }} <!--, onfocusout="checkIfUserExists()"-->
                                     </div>
-                                    <div id="email-error" class="text-muted red-text"></div>
+                                    <div id="email-error" class="text-muted red-text mgt-5"></div>
                                 </div>
                                 <div class="dob-input">
                                     {{ form.date_of_birth.label(class="bold-lb") }}
@@ -118,6 +118,13 @@
                             {{ form.submit(class="btn-submit link-btn mtb-50-10", id="nextBtn", onclick="nextPrev(1)", style="display: inline;")}}
                         </div>
                     </form>
+                    <div id="notification" class="notification">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="notification__warning" enable-background="new 0 0 32 32" viewBox="0 0 32 32" id="warning"  width="100"><path d="M16,0.5C7.45001,0.5,0.5,7.45001,0.5,16S7.45001,31.5,16,31.5S31.5,24.54999,31.5,16S24.54999,0.5,16,0.5z M14.5,23.5v-1.09003c0-0.83002,0.66998-1.5,1.5-1.5s1.5,0.66998,1.5,1.5V23.5c0,0.82996-0.66998,1.5-1.5,1.5S14.5,24.32996,14.5,23.5z M17.5,18.03998c0,0.82001-0.66998,1.5-1.5,1.5s-1.5-0.67999-1.5-1.5V8.5C14.5,7.66998,15.16998,7,16,7s1.5,0.66998,1.5,1.5V18.03998z"></path></svg>
+                        <p id="notification-mssg"></p>
+                        <div id="close" class="notification-close" onclick="closeFlash( )">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 47.5 47.5" id="cancel" width="100"><defs><clipPath id="a"><path d="M0 38h38V0H0v38Z"></path></clipPath></defs><g clip-path="url(#a)" transform="matrix(1.25 0 0 -1.25 0 47.5)"><path fill="" d="m23.238 18.996 9.883 9.883a3 3 0 1 1-4.242 4.242l-9.883-9.883-9.883 9.883a3 3 0 1 1-4.242-4.243l9.883-9.882-9.907-9.907A3 3 0 0 1 9.09 4.847l9.906 9.906 9.883-9.882A2.992 2.992 0 0 1 31 3.993a3 3 0 0 1 2.121 5.121l-9.883 9.882Z"></path></g></svg>
+                        </div>
+                    </div>
                     {% block scripts %}
                     {{ super() }}
                     <script type="text/javascript" src="{{ url_for('static', filename='js/validate_users.js') }}"></script>
