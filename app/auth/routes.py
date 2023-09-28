@@ -2,6 +2,8 @@ from flask import (Blueprint, render_template, flash,
                     redirect, url_for, session, request, jsonify)
 from flask_login import current_user, login_user, logout_user
 
+from datetime import timedelta
+
 from app.auth.forms import (RegistrationForm, LoginForm,
                              LoginEmailForm, LoginPasswordForm)
 from app import bcrypt, db
@@ -42,7 +44,7 @@ def login():
         user = User.query.filter_by(email=email).first()
 
         if user and bcrypt.check_password_hash(user.password, form_password.password.data):
-            login_user(user, remember=True)
+            login_user(user, remember=True, duration=timedelta(days=1))
             next_page = request.args.get('next')
 
             if next_page == '/logout':
