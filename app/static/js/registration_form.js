@@ -89,7 +89,8 @@ function validateForm() {
         if (email_valid == true && form_valid == true) {
             valid = true
         } else {
-            message = "Invalid form inputs! Please check Username or password and try again."
+            // valid =  false
+            message = "Invalid form inputs! Please check username or email and try again."
             flashPopup(message)
         }
     } else if (currentTab == 1) {

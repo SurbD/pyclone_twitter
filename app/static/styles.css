@@ -4,10 +4,17 @@
 @import url("landing.css");
 @import url("login.css");
 @import url("register.css");
+@import url("profile.css");
+@import url("logout.css");
 
 :root {
     /* Color varibles */
-    --primary: #0e48fe;
+    --background: #000208;
+    --primary: #0095ff;
+    --primary-text-blue: #0143bc;
+    --danger-text: #ff0000bb;
+    --x-white: #f0f8ff;
+    /* Not Part of application color yet */
     --primary-hover: #29e6a7;
     --primary-dark: #039d69;
     --gray100: #f9fbff;
@@ -24,31 +31,43 @@
 
     /* border radius */
     --radius: 0.2rem;
+    --rad-75: 0.75rem;
 }
 
 body {
     margin: 0;
     box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
-    background-color: rgb(0, 2, 8);
-    color: aliceblue;
+    background-color: var(--background);
+    color: var(--x-white);
 }
 
 a {
     text-decoration: none;
-    color: #0095ff;
+    color: var(--primary);
+}
+
+/* Utility classes */
+.sm-text {
+    font-size: 0.89rem;
 }
 
 .blue-bg-text {
-    background-color: #0143bc;
+    background-color: var(--primary-text-blue);
 }
 
 .red-text {
-    color: #ff0000bb;
+    color: var(--danger-text);
 }
 
 .mgt-5 {
     margin-top: 5px;
+}
+
+.gray-small-text {
+    color: var(--gray400);
+    font-size: 0.8rem;
+
 }
 
 /* Notification */
@@ -58,6 +77,7 @@ a {
     font-weight: bold;
     color: var(--primary);
 }
+/* End of Utility classes */
 
 .notification {
     color: var(--gray700);
@@ -111,4 +131,17 @@ a {
         opacity: 1;
         top: 1.5rem;
     }
+}
+
+svg.small-icon {
+    width: 1.8rem;
+    fill: var(--gray150);
+}
+
+
+svg.left-arrow-icon {
+    margin-top: 2px;
+    width: 1.5rem;
+    fill: var(--gray150);
+    font-size: 3.3rem;
 }

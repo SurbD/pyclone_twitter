@@ -1,14 +1,13 @@
 from flask import (Blueprint, render_template, flash,
-                    redirect, url_for, session, request, jsonify)
-from flask_login import current_user, login_user, logout_user
+                    redirect, url_for, session, request)
+from flask_login import current_user, login_user, logout_user, login_required
 
 from datetime import timedelta
 
-from app.auth.forms import (RegistrationForm, LoginForm,
+from app.auth.forms import (RegistrationForm,
                              LoginEmailForm, LoginPasswordForm)
 from app import bcrypt, db
 from app.models import User
-from app.utils import get_vcode, confirm_vcode, send_email
 
 auth = Blueprint('auth', __name__)
 
@@ -91,128 +90,133 @@ def register():
     return render_template('register.html', form=form, title='Register', items=[form, 'valid'])
 
 
-@auth.route("/logout")
+@auth.route("/logout", methods=['GET', 'POST'])
+@login_required
 def logout():
-    logout_user()
-    return redirect(url_for('auth.login'))
-
+    if request.method == 'POST':
+        logout_user()
+        return redirect(url_for('auth.login'))
+    return render_template('logout.html')
 
 # Routes API call from Axios
 
-@auth.route("/validate-email", methods=['POST'])
-def validate_email():
-    # For Javascript email validation, 
-    # this will later become on with the validate inputs 
-    # when it starts returning a message there will be no need for this
+# @auth.route("/validate-email", methods=['POST'])
+# def validate_email():
+#     # For Javascript email validation, 
+#     # this will later become on with the validate inputs 
+#     # when it starts returning a message there will be no need for this
 
-    if request.method == 'POST':
-        email = request.get_json()['email'].lower()
-        user = User.query.filter_by(email=email).first() # SetUp DB
-        if user:
-            return jsonify({'user_exists': True})
-        else:
-            return jsonify({'user_exists': False})
-    return
+#     if request.method == 'POST':
+#         email = request.get_json()['email'].lower()
+#         user = User.query.filter_by(email=email).first() # SetUp DB
+#         if user:
+#             return {'user_exists': True}
+#         else:
+#             return {'user_exists': False}
+#     return
 
-@auth.route("/validate-username", methods=["POST"])
-def validate_username():
+# @auth.route("/validate-username", methods=["POST"])
+# def validate_username():
 
-    # Just for testing think of ways to make this part of the overall 
-    # validate function thats the validate-inputs endpoint
+#     # Just for testing think of ways to make this part of the overall 
+#     # validate function thats the validate-inputs   endpoint
 
-    if request.method == 'POST':
-        username = request.get_json()['username'].lower()
-        user = User.query.filter_by(username=username).first()
+#     if request.method == 'POST':
+#         username = request.get_json()['username'].lower()
+#         user = User.query.filter_by(username=username).first()
 
-        if user:
-            message = "That username is taken. Please choose a different one."
-            taken = True
-        else:
-            message = ""
-            taken = False
-        return {'taken': taken, 'message': message}
+#         if user:
+#             message = "This username is taken. Please choose a different one."
+#             taken = True
+#         else:
+#             message = ""
+#             taken = False
+#         return {'taken': taken, 'message': message}
         
             
 
-@auth.route("/validate-inputs", methods=["POST"])
-def validate_inputs():
-    form = RegistrationForm()
+# @auth.route("/validate-inputs", methods=["POST"])
+# def validate_inputs():
+#     form = RegistrationForm()
 
-    if request.method == "POST":
-        form_data = request.get_json()
-        # print(form_data)
-        form.username.data = form_data['username'].lower()
-        form.email.data = form_data['email'].lower()
-        form.date_of_birth.data = form_data['date_of_birth']
+#     if request.method == "POST":
+#         form_data = request.get_json()
+#         # print(form_data)
+#         form.username.data = form_data['username'].lower()
+#         form.email.data = form_data['email'].lower()
+#         form.date_of_birth.data = form_data['date_of_birth']
 
-        email_validate = form.email.validate(form) and form.validate_email(form.email)
-        username_validate = form.username.validate(form) and form.validate_username(form.username)
-        dob_validate = form.date_of_birth.validate(form)
-        isAllValid = email_validate and username_validate and dob_validate
+#         email_validate = form.email.validate(form) and form.validate_email(form.email)
+#         username_validate = form.username.validate(form) and form.validate_username(form.username)
+#         dob_validate = form.date_of_birth.validate(form)
+#         isAllValid = email_validate and username_validate and dob_validate
 
-        return jsonify({
-            'isValid': isAllValid,
-            'data': {
-                'email': {
-                    'isvalid': email_validate,
-                    'message': None
-                },
-                'username': {
-                    'isValid': username_validate,
-                    'message': None
-                },
-                'date_of_birth': {
-                    'isValid': dob_validate,
-                    'message': None
-                }
-            }
-        })
+#         print(form.username.data, username_validate)
+#         print(form.email.data, email_validate)
 
-    return
+#         return {
+#             'isValid': isAllValid,
+#             'data': {
+#                 'email': {
+#                     'isvalid': email_validate,
+#                     'message': None
+#                 },
+#                 'username': {
+#                     'isValid': username_validate,
+#                     'message': None
+#                 },
+#                 'date_of_birth': {
+#                     'isValid': dob_validate,
+#                     'message': None
+#                 }
+#             }
+#         }
+
+#     return
 
 
-@auth.route('/get-verification-code', methods=['POST'])
-def get_verification_code():
+# @auth.route('/get-verification-code', methods=['POST'])
+# def get_verification_code():
     
-    if request.method == 'POST':
-        user_data = request.get_json()
-        email = user_data['email'].lower()
-        username = user_data['username'].lower()
+#     if request.method == 'POST':
+#         user_data = request.get_json()
+#         email = user_data['email'].lower()
+#         username = user_data['username'].lower()
 
-        token, code = get_vcode().values()
-        session['verification_token'] = token
+#         token, code = get_vcode().values()
+#         session['verification_token'] = token
 
-        try:
-            send_email(email, 'Confirm Email Address',
-                        'email/confirm_new_user', code=code, username=username)
-        except Exception as e:
-            # print(e)
-            # print('ENAD-------------')
-            success = False
-        else:
-            success = True
-        return {
-            'success': success,
-            'token': token
-        }
+#         try:
+#             send_email(email, 'Confirm Email Address',
+#                         'email/confirm_new_user', code=code, username=username)
+#         except Exception as e:
+#             # print(e)
+#             # print('ENAD-------------')
+#             success = False
+#         else:
+#             success = True
+#         return {
+#             'success': success,
+#             'token': token
+#         }
 
-@auth.route('/confirm-verification-code', methods=['POST'])
-def confirm_verification_code():
-    # I don't know if i should pass token as a parameter from the request 
-    # or send as json or to even just store the token in session and 
-    # retrive and clear it once it has been confirmed
+# @auth.route('/confirm-verification-code', methods=['POST'])
+# def confirm_verification_code():
+#     # I don't know if i should pass token as a parameter from the request 
+#     # or send as json or to even just store the token in session and 
+#     # retrive and clear it once it has been confirmed
     
-    token = session['verification_token']
+#     token = session['verification_token']
 
-    if request.method == 'POST':
-        code = request.get_json()['code']
+#     if request.method == 'POST':
+#         code = request.get_json()['code']
 
-        if confirm_vcode(token, code):
-            session.pop('verification_token')
-            message = 'Successfully verified your email'
-            verified = True
-        else: 
-            message = 'Check email for verification or try requesting a new code'
-            verified = False
+#         if confirm_vcode(token, code):
+#             session.pop('verification_token')
+#             message = 'Successfully verified your email'
+#             verified = True
+#         else: 
+#             message = 'Check email for verification or try requesting a new code'
+#             verified = False
 
-        return {'verified': verified, 'message': message} 
+#         return {'verified': verified, 'message': message} 

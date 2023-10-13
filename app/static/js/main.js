@@ -1,5 +1,19 @@
 const notification = document.getElementById("notification");
 const closeBtn = document.getElementById("close");
+setBg()
+
+
+// const pfp = document.getElementById("pfp")
+// pfp.style.backgroundImage = pfp.dataset.content;
+
+function setBg() {
+    const pfp = document.getElementById("pfp");
+    const userIcon = document.getElementById('user-icon')
+    pfp.style.backgroundImage = pfp.dataset.content;
+    userIcon.style.backgroundImage = userIcon.dataset.content;
+    console.log(userIcon.dataset.content)
+    console.log('Loaded')
+}
 
 // JavaScript for Flash Alert Canceling
 function dataDismiss() {
@@ -34,6 +48,7 @@ function closeFlash() {
 }
 
 function flashPopup(message) {
+    console.log(message)
     const reg_form = document.forms['registration-form']
     const username = reg_form['username'].value
     const email = reg_form['email'].value
@@ -43,5 +58,4 @@ function flashPopup(message) {
         document.getElementById('notification-mssg').innerText = message
         notification.classList.add('notification-show');
     }
-
 }

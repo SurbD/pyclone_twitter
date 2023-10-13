@@ -3,8 +3,10 @@
 {% block content %}
     <div class="overlay" style="visibility: visible; opacity: 1;">
         <div class="wrapper">
-            <a class="x-close" onclick="nextPrev(-1)" id="close" href="{{url_for('main.home')}}"><i class="fa-solid fa-xmark" style="color: #ffffff; font-size: 0.9em"></i></a>
-            <button type="button" class="x-close btn-close" onclick="nextPrev(-1)" id="prevBtn"><i class="fa-solid fa-arrow-left-long" style="color: #ffffff; font-size: 0.9em;"></i></button>
+            <!-- <a class="x-close" onclick="nextPrev(-1)" id="close" href="{{url_for('main.home')}}"><i class="fa-solid fa-xmark" style="color: #ffffff; font-size: 0.9em"></i></a> -->
+            <a class="x-close" onclick="nextPrev(-1)" id="close" href="{{url_for('main.home')}}"><svg xmlns="http://www.w3.org/2000/svg" width="100" class="small-icon" viewBox="0 0 16 16"> <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/></svg></a>
+            <!-- <button type="button" class="x-close btn-close" onclick="nextPrev(-1)" id="prevBtn"><i class="fa-solid fa-arrow-left-long" style="color: #ffffff; font-size: 0.9em;"></i></button> -->
+            <button type="button" class="x-close btn-close" onclick="nextPrev(-1)" id="prevBtn"><svg xmlns="http://www.w3.org/2000/svg" width="100" fill="currentColor" class="solid left-arrow-icon" viewBox="0 0 16 16"> <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/> </svg></button>
             <span class="page-nav-info step" id="step"></span>
             <div class="login-wrapper">
                 <div class="login-container expand-70">
@@ -127,8 +129,8 @@
                     </div>
                     {% block scripts %}
                     {{ super() }}
-                    <script type="text/javascript" src="{{ url_for('static', filename='js/validate_users.js') }}"></script>
-                    <script type="text/javascript" src="{{ url_for('static', filename='js/registration_form.js') }}"></script>
+                    <script defer type="text/javascript" src="{{ url_for('static', filename='js/registration_form.js') }}"></script>
+                    <script defer type="text/javascript" src="{{ url_for('static', filename='js/validate_users.js') }}"></script>
                     {% endblock %}
                 </div>
             </div>

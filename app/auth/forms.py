@@ -27,7 +27,7 @@ class RegistrationForm(FlaskForm):
         return True
         
     def validate_username(self, username):
-        user = User.query.filter_by(email=username.data.lower()).first()
+        user = User.query.filter_by(username=username.data.lower()).first()
         if user:
             return False # message - "User with that name already exists. Please choose a different name")
         return True
