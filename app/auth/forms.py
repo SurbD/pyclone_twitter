@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import (StringField, PasswordField, EmailField,
                       SubmitField, BooleanField, DateField)
-from wtforms.validators import DataRequired, Length, Email, Regexp
+from wtforms.validators import DataRequired, Length, Email, Regexp, EqualTo
 from wtforms import ValidationError
 
 from app.models import User
@@ -46,3 +46,18 @@ class LoginEmailForm(FlaskForm):
 class LoginPasswordForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()])
     submit = SubmitField('Log in')
+
+class RequestResetForm(FlaskForm):
+    email = EmailField('Email', validators=[DataRequired(), Email()])
+    submit = SubmitField('Request Password Reset')
+
+    def validate_email(self, email):
+        user = User.query.filter_by(email=email.data.lower()).first()
+
+        if not user:
+            raise ValidationError('There is no account with that email, you must register first.')
+        
+class ResetPasswordForm(FlaskForm):
+    password = PasswordField('Password', validators=[DataRequired()])
+    confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
+    submit = SubmitField('Reset Password')

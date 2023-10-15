@@ -31,7 +31,7 @@
                                 </div>
                                 <div class="form-group landing-link">
                                     {{ form.submit(class="btn-submit link-btn") }}
-                                    <a href="" class="ghost-style link-btn form-btn bd-line-dim forgot-text">Forgot Password?</a>
+                                    <a href="{{ url_for('auth.reset_request') }}" class="ghost-style link-btn form-btn bd-line-dim forgot-text">Forgot Password?</a>
                                 </div>
                             </div>
                         </form>
@@ -56,7 +56,7 @@
                                         {{form_password.password.label(class="form-label")}}
                                         {{ form_password.password(class="form-lg", placeholder="Password") }}
                                     </div>
-                                    <a href="" class="text-muted blue-text">Forgot Password?</a>
+                                    <a href="{{ url_for('auth.reset_request') }}" class="text-muted blue-text">Forgot Password?</a>
                                 </div>
                                 <div class="form-group landing-link">
                                     {{ form_password.submit(class="btn-submit link-btn") }}
