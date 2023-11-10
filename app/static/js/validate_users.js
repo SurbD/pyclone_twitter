@@ -145,6 +145,7 @@ function confirmVerificationCode() {
             
             console.log(response)
             console.log(response.verified)
+            document.getElementById("verification-error").innerText = response.message
         })
         .catch(err => console.log(err))
     return verified
@@ -158,4 +159,3 @@ function displayErr(valid) {
         document.getElementById("email-error").innerText = "";
     }
 }
-

@@ -1,5 +1,3 @@
-# Move view functions that interact with front end alot  from api to this blueprint
-
 from flask import Blueprint, request, session
 
 from app.models import User
@@ -121,10 +119,10 @@ def confirm_verification_code():
 
         if confirm_vcode(token, code):
             session.pop('verification_token')
-            message = 'Successfully verified your email'
+            message = ''
             verified = True
         else: 
-            message = 'Check email for verification or try requesting a new code'
+            message = 'Check email for the verification code or try requesting a new code'
             verified = False
 
         return {'verified': verified, 'message': message} 
