@@ -11,8 +11,8 @@ class Config:
     MAIL_SERVER = 'smtp.gmail.com'
     MAIL_PORT = 465
     MAIL_USE_SSL = True
-    MAIL_USERNAME = os.environ.get('EMAIL_USER')
-    MAIL_PASSWORD = os.environ.get('EMAIL_PASS')
+    MAIL_USERNAME = os.environ.get('MAIL_USERNAME')
+    MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
 
     XCLONE_MAIL_SUBJECT_PREFIX = '[Xcorps Clone]'
     XCLONE_MAIL_SENDER = 'Xcorps Admin <noreply@xcorp.com>'

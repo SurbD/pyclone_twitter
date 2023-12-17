@@ -47,6 +47,7 @@ function usernameTest() {
 
 
 function checkIfUserTaken() {
+    let taken;
     usernameTest()
         .then(data=> {
             taken = data.taken
@@ -105,6 +106,7 @@ function sendVerification() {
         username: username,
         email: email
     }
+    console.log(`${data} -> Sent)
 
     const promise = axios.post('/get-verification-code', data)
     const dataPromise = promise.then((response) => response.data)

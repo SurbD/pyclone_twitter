@@ -96,8 +96,7 @@ def get_verification_code():
             send_email(email, 'Confirm Email Address',
                         'email/confirm_new_user', code=code, username=username)
         except Exception as e:
-            # print(e)
-            # print('ENAD-------------')
+            print(e)
             success = False
         else:
             success = True

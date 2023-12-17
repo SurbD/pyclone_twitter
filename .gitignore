@@ -1,5 +1,8 @@
 # Packages
 __pycache__
+.env
 
 # Virtual Environments
 venv
+linux_venv
+

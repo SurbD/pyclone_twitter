@@ -13,3 +13,11 @@ def profile(username):
     if user:
         return render_template('profile.html', username=username, user=user)
     return redirect(url_for('auth.login'))
+
+@users.route('/<username>/edit', methods=['GET', 'POST'])
+@login_required
+def edit_profile(username):
+    print('got here')
+    if current_user.username != username:
+        return redirect(url_for( 'users.profile', username=username))
+    return render_template('edit_profile.html')

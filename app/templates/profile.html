@@ -28,13 +28,13 @@
                     <a href="" class="pagenav-btn">Post</a>
                 </div>
                 <div class="user-icon-info">
-                    <div id="user-icon" class="user-icon" data-content="url(../static/images/profile_pics/{{current_user.image_file}})">
-                        <!-- <a href="{{ url_for('users.profile', username=current_user.username)}}">
-                            <img class="user-icon-jpg" src="{{ url_for('static', filename='images/profile_pics/'+ current_user.image_file) }}" alt="current user profile picture">
-                        </a> -->
+                    <div id="user-icon" class="user-icon" data-content="url(../static/images/profile_pics/{{ current_user.image_file }})">
+                        <!-- <a href="{{ url_for( 'users.profile', username=current_user.username ) }}"> -->
+                        <!--     <img class="user-icon-jpg" src="{{ url_for( 'static', filename='images/profile_pics/'+ current_user.image_file ) }}" alt="current user profile picture"> -->
+                        <!-- </a> -->
                         <!-- Used Javascript to Load all images -->
                     </div>
-                    <!-- <a class="user-icon" href="{{ url_for('users.profile', username=current_user.username)}}"></a> -->
+                    <!-- <a class="user-icon" href="{{ url_for( 'users.profile', username=current_user.username) }}"></a> -->
                     <div class="user-info">
                         <p class="user-name">
                             <a class="white-icons" href="{{ url_for('users.profile', username=current_user.username)}}">
@@ -55,6 +55,7 @@
             <div class="x-main-item">
                 <div class="x-home-timeline">
                     <div class="x-profile-section">
+                        {% block profile_section %}
                         <div class="timeline-topnav">
                             <a href="" class="timeline-topnav-btn btn-close"><svg xmlns="http://www.w3.org/2000/svg" width="100" fill="currentColor" class="solid left-arrow-icon" viewBox="0 0 16 16"> <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/> </svg></a>
                             <div class="timeline-topnav-user-info">
@@ -63,12 +64,13 @@
                             </div>
                         </div>
                         <div class="top-banner">
-                            <img class="cover-image" src="{{ url_for('static', filename='images/cover_images/default.png') }}" alt=""> <!-- Add to database as a column -->
-                            <!-- <img class="x-profile-image" src="{{ url_for('static', filename='images/profile_pics/'+ user.image_file)}}" alt=""> -->
+                            <img class="cover-image" src="{{ url_for( 'static', filename='images/cover_images/default.png' ) }}" alt=""> <!-- Add to database as a column -->
                             <div class="top-banner-user-info">
-                                <div id="pfp" class="x-profile-image" data-content="url(../static/images/profile_pics/{{user.image_file}})"></div> <!-- url('../static/images/profile_pics/default.jpg') -->
-                                <a href="" class="profile-edit-btn">Edit Profile</a href="">
-                            </div>
+                                <div id="pfp" class="x-profile-image" data-content="url(../static/images/profile_pics/{{ user.image_file }})"></div> <!-- url('../static/images/profile_pics/default.jpg') -->
+                                {% if current_user.username == username %}
+                                <a href="{{ url_for( 'users.edit_profile', username=current_user.username) }}" class="profile-edit-btn">Edit Profile</a>
+                                {% endif %}
+                            </div> 
                         </div>
                         <div class="user-profile">
                             <div class="user-profile-names">
@@ -97,6 +99,7 @@
                             <span class="sm-text">30<!-- {User following} --> <span class="gray-small-text">Following</span></span>
                             <span class="sm-text">67<!-- {User followers} --> <span class="gray-small-text">Followers</span></span>
                         </div>
+                        {% endblock %}
                     </div>
                 </div>
                 <!-- End of Main Middle Section -->
@@ -109,12 +112,12 @@
                     </form>
                     <div class="users-posts-gallery">
                         <!-- This gets the most recent images from posts and displays it using jinja for loop-->
-                        <img src="{{ url_for('static', filename='images/cover_images/default.png') }}" alt="">
-                        <img src="{{ url_for('static', filename='images/profile_pics/default.jpg') }}" alt="">
-                        <img src="{{ url_for('static', filename='images/cover_images/default.png') }}" alt="">
-                        <img src="{{ url_for('static', filename='images/profile_pics/default.jpg') }}" alt="">
-                        <img src="{{ url_for('static', filename='images/cover_images/default.png') }}" alt="">
-                        <img src="{{ url_for('static', filename='images/profile_pics/default.jpg') }}" alt="">
+                        <img src="{{ url_for( 'static', filename='images/cover_images/default.png' ) }}" alt="">
+                        <img src="{{ url_for( 'static', filename='images/profile_pics/default.jpg' ) }}" alt="">
+                        <img src="{{ url_for( 'static', filename='images/cover_images/default.png' ) }}" alt="">
+                        <img src="{{ url_for( 'static', filename='images/profile_pics/default.jpg' ) }}" alt="">
+                        <img src="{{ url_for( 'static', filename='images/cover_images/default.png' ) }}" alt="">
+                        <img src="{{ url_for( 'static', filename='images/profile_pics/default.jpg' ) }}" alt="">
                     </div>
                     <div class="suggested-users">
                         <h4>You might like</h4>
@@ -125,7 +128,7 @@
                                 <div class="user-icon"></div>
                                 <div class="user-info">
                                     <p class="user-name">
-                                        <a class="white-icons" href="{{ url_for('users.profile', username='alexhormozi')}}">
+                                        <a class="white-icons" href="{{ url_for( 'users.profile', username='alexhormozi') }}">
                                             Alex Hormozi</a>
                                     </p>
                                     <p class="user-username">@alexhormozi</p>
@@ -136,7 +139,7 @@
                                 <div class="user-icon firebrick-bg-style"></div>
                                 <div class="user-info">
                                     <p class="user-name">
-                                        <a class="white-icons" href="{{ url_for('users.profile', username='surbx')}}">
+                                        <a class="white-icons" href="{{ url_for( 'users.profile', username='surbx' ) }}">
                                             Surb X</a>
                                     </p>
                                     <p class="user-username">@surbx</p>
@@ -147,7 +150,7 @@
                                 <div class="user-icon coral-bg-style"></div>
                                 <div class="user-info">
                                     <p class="user-name">
-                                        <a class="white-icons" href="{{ url_for('users.profile', username='divine')}}">
+                                        <a class="white-icons" href="{{ url_for( 'users.profile', username='divine' ) }}">
                                             Divine Mukoro</a>
                                     </p>
                                     <p class="user-username">@divinemukoro</p>
