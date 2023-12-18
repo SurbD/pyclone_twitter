@@ -17,7 +17,7 @@ def profile(username):
 @users.route('/<username>/edit', methods=['GET', 'POST'])
 @login_required
 def edit_profile(username):
-    print('got here')
+    user = User.query.filter_by(username=username.lower()).first()
     if current_user.username != username:
         return redirect(url_for( 'users.profile', username=username))
-    return render_template('edit_profile.html')
+    return render_template('edit_profile.html', username=username, user=user)

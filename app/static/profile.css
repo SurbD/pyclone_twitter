@@ -20,7 +20,8 @@
     width: 1.3rem; }
 
 .x-container {
-    /* gap: 1.8rem; */
+    width: 80%;
+    margin: 0 auto;
     display: flex;
     justify-content: center; }
 
@@ -30,19 +31,29 @@
     align-items: end;
     overflow: auto;
 }
-
 .x-pagenavs-section {
     padding: 10px 23px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     gap: 1.5rem;
-    /* height: 100vh; */
+    height: 100vh;
+    margin-bottom: 100rem;
 }
-.x-pagenavs{
+
+.x-pagenavs-group{
+    /* height: 100vh; */
+    display: flex;
+    align-self: start;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.x-pagenavs-icons{
     display: flex;
     flex-direction: column;
+    align-self: start;
     gap: 1.5rem;
+    margin-bottom: 1rem;
 }
 
 .pagenav-btn {
@@ -87,6 +98,20 @@
 }
 
 .user-icon-info {
+    display: flex;
+    flex-direction: column;
+    /* border: 1px solid red; */
+    gap: 3.7rem;
+}
+
+.suggested-user-info {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+
+}
+
+.user-icon-info-container {
     display: flex;
     align-items: center;
     gap: 0.7rem;
@@ -140,12 +165,9 @@
 
 /* End Of Header - Navigation Section */
 
-.x-profile-section {
-    border-right: 2px solid var(--gray600);
-}
-
 .x-main-item {
-    display: flex;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
     /* align-items: start; */
     /* gap: 1.8rem; */
 }
@@ -155,6 +177,7 @@
     gap: 1.8rem;
     align-items: center;
     padding: 0.6rem 1.1rem;
+    border: 1px solid red;
 
     /* justify-content: center; */
 }

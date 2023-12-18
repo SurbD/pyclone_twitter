@@ -2,56 +2,55 @@
 
 {% block content %}
     <div class="x-container">
-        <header class="x-section x-pagenavs-container border-x">
+        <header class="x-section x-pagenavs-container">
             <div class="x-pagenavs-section">
-                <div class="x-pagenavs">
-                    <div class="x-logo-container">
-                        <svg  class="x-pagenavs-logo" width="100" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" version="1.1">
-                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                        </svg>
-                    </div>
-                    <div class="x-pagenavs-links">
-                        <div class="x-pagenavs-link"><i class="fa-solid fa-house white-icons x-icon-home"></i> <span>Home</span></div>
-                        <div class="x-pagenavs-link"><i class="fa-solid fa-magnifying-glass white-icons x-icon-home"></i><span>Explore</span></div>
-                        <div class="x-pagenavs-link"><i class="fa-regular fa-bell white-icons x-icon-home"></i><span>Notifications</span></div>
-                        <div class="x-pagenavs-link"><i class="fa-regular fa-envelope white-icons x-icon-home"></i><span>Messages</span></div>
-                        <div class="x-pagenavs-link"><i class="fa-regular fa-rectangle-list white-icons x-icon-home"></i><span>Lists</span></div>
-                        <div class="x-pagenavs-link"><i class="fa-solid fa-users white-icons x-icon-home"></i><span>Communities</span></div>
-                        <div class="x-pagenavs-link">
-                            <svg  class="x-premium-icon" width="100" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" version="1.1">
+                <div class="x-pagenavs-group">
+                    <div class="x-pagenavs-icons">
+                        <div class="x-logo-container">
+                            <svg  class="x-pagenavs-logo" width="100" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" version="1.1">
                                 <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
                             </svg>
-                            <span>Premium</span>
                         </div>
-                        <div class="x-pagenavs-link"><i class="fa-solid fa-user white-icons x-icon-home"></i><span>Profile</span></div>
+                        <div class="x-pagenavs-links">
+                            <div class="x-pagenavs-link"><i class="fa-solid fa-house white-icons x-icon-home"></i> <span>Home</span></div>
+                            <div class="x-pagenavs-link"><i class="fa-solid fa-magnifying-glass white-icons x-icon-home"></i><span>Explore</span></div>
+                            <div class="x-pagenavs-link"><i class="fa-regular fa-bell white-icons x-icon-home"></i><span>Notifications</span></div>
+                            <div class="x-pagenavs-link"><i class="fa-regular fa-envelope white-icons x-icon-home"></i><span>Messages</span></div>
+                            <div class="x-pagenavs-link"><i class="fa-regular fa-rectangle-list white-icons x-icon-home"></i><span>Lists</span></div>
+                            <div class="x-pagenavs-link"><i class="fa-solid fa-users white-icons x-icon-home"></i><span>Communities</span></div>
+                            <div class="x-pagenavs-link">
+                                <svg  class="x-premium-icon" width="100" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" version="1.1">
+                                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                                </svg>
+                                <span>Premium</span>
+                            </div>
+                            <div class="x-pagenavs-link"><i class="fa-solid fa-user white-icons x-icon-home"></i><span>Profile</span></div>
+                        </div>
+                        <!-- <a href="" class="pagenav-btn">Post</a> -->
                     </div>
-                    <a href="" class="pagenav-btn">Post</a>
-                </div>
-                <div class="user-icon-info">
-                    <div id="user-icon" class="user-icon" data-content="url(../static/images/profile_pics/{{ current_user.image_file }})">
-                        <!-- <a href="{{ url_for( 'users.profile', username=current_user.username ) }}"> -->
-                        <!--     <img class="user-icon-jpg" src="{{ url_for( 'static', filename='images/profile_pics/'+ current_user.image_file ) }}" alt="current user profile picture"> -->
-                        <!-- </a> -->
-                        <!-- Used Javascript to Load all images -->
-                    </div>
-                    <!-- <a class="user-icon" href="{{ url_for( 'users.profile', username=current_user.username) }}"></a> -->
-                    <div class="user-info">
-                        <p class="user-name">
-                            <a class="white-icons" href="{{ url_for('users.profile', username=current_user.username)}}">
-                                {{ current_user.username|upper }}
-                            </a>
-                        </p>
-                        <p class="user-username">@py{{ current_user.username }}</p>
-                    </div>
-                    <div class="more-info">
-                        <a href="">
-                            <i class="fa-solid fa-ellipsis white-icons x-icon-home"></i>
-                        </a>
+                    <div class="user-icon-info">
+                        <a href="" class="pagenav-btn">Post</a>
+                        <div class="user-icon-info-container">
+                            <div id="user-icon" class="user-icon" data-content="url(../static/images/profile_pics/{{ current_user.image_file }})"></div>
+                            <!-- <a class="user-icon" href="{{ url_for( 'users.profile', username=current_user.username) }}"></a> -->
+                            <div class="user-info">
+                                <p class="user-name">
+                                    <a class="white-icons" href="{{ url_for('users.profile', username=current_user.username) }}">
+                                        {{ current_user.username|upper }} </a>
+                                </p>
+                                <p class="user-username">@py{{ current_user.username }}</p>
+                            </div>
+                            <div class="more-info">
+                                <a href="">
+                                    <i class="fa-solid fa-ellipsis white-icons x-icon-home"></i>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </header>
-        <main class="x-section x-main-section border-x">
+        <main class="x-section x-main-section">
             <div class="x-main-item">
                 <div class="x-home-timeline">
                     <div class="x-profile-section">
@@ -124,7 +123,7 @@
                         <div class="suggested-users-card">
                             <!-- Use a search algorithm to check for users that have something in common from bio, 
                                 and give only the first 3 results  with jinja for loop - using dummy info for now -->
-                            <div class="user-icon-info"> <!-- suggested-user-info -->
+                            <div class="suggested-user-info">
                                 <div class="user-icon"></div>
                                 <div class="user-info">
                                     <p class="user-name">
@@ -135,7 +134,7 @@
                                 </div>
                                 <a href="" class="suggested-follow-btn">Follow</a>
                             </div>
-                            <div class="user-icon-info"> <!-- suggested-user-info -->
+                            <div class="suggested-user-info ">
                                 <div class="user-icon firebrick-bg-style"></div>
                                 <div class="user-info">
                                     <p class="user-name">
@@ -146,7 +145,7 @@
                                 </div>
                                 <a href="" class="suggested-follow-btn">Follow</a>
                             </div>
-                            <div class="user-icon-info"> <!-- suggested-user-info -->
+                            <div class="suggested-user-info ">
                                 <div class="user-icon coral-bg-style"></div>
                                 <div class="user-info">
                                     <p class="user-name">
