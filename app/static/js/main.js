@@ -9,9 +9,15 @@ setBg()
 function setBg() {
     const pfp = document.getElementById("pfp");
     const userIcon = document.getElementById('user-icon')
-    pfp.style.backgroundImage = pfp.dataset.content;
-    userIcon.style.backgroundImage = userIcon.dataset.content;
-    console.log(userIcon.dataset.content)
+    
+    if (pfp){
+        pfp.style.backgroundImage = pfp.dataset.content;
+    }
+
+    if (userIcon) {
+        userIcon.style.backgroundImage = userIcon.dataset.content;
+        console.log(userIcon.dataset.content)
+    }
     console.log('Loaded')
 }
 

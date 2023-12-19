@@ -3,6 +3,8 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_mail import Mail
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
+from flask_moment import Moment
+from flask_migrate import Migrate
 
 from app.config import config
 
@@ -12,6 +14,8 @@ bcrypt = Bcrypt()
 login_manager = LoginManager()
 login_manager.login_view = 'auth.login'
 login_manager.login_message_category = 'info'
+moment = Moment()
+migrate = Migrate()
 
 
 def create_app(config_name):
@@ -23,6 +27,8 @@ def create_app(config_name):
     mail.init_app(app)
     bcrypt.init_app(app)
     login_manager.init_app(app)
+    moment.init_app(app)
+    migrate.init_app(app, db)
 
     from app.main.routes import main
     from app.auth.routes import auth

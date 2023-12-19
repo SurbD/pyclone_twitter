@@ -106,7 +106,7 @@ function sendVerification() {
         username: username,
         email: email
     }
-    console.log(`${data} -> Sent)
+    console.log(`${data} -> Sent`);
 
     const promise = axios.post('/get-verification-code', data)
     const dataPromise = promise.then((response) => response.data)
@@ -152,7 +152,6 @@ function confirmVerificationCode() {
         .catch(err => console.log(err))
     return verified
 }
-
 
 function displayErr(valid) {
     if (valid == true) {

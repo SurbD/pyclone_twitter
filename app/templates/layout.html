@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script defer src="https://kit.fontawesome.com/3d39008166.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="{{ url_for( 'static', filename='styles.css') }}">
+        {{ moment.include_moment() }}
         
         {% if title %}
         <title>{{ title }} X-Corps</title>
@@ -35,8 +36,8 @@
     </footer>
 
     {% block scripts %}
-        <script defer src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
-        <script defer src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+    <script src="{{ url_for( 'static', filename='js/main.js') }}"></script>
     {% endblock %}
 </body>
 </html>

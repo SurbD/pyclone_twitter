@@ -75,8 +75,8 @@ function nextPrev(n) {
 }
 
 function validateForm() {
-    var x = document.getElementsByClassName('tab');
-    var valid = false
+    // const x = document.getElementsByClassName('tab');
+    let valid = false
 
     // valid = checkIfUserExists()
     if (currentTab == 0) {

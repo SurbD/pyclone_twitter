@@ -17,12 +17,22 @@ class User(db.Model, UserMixin):
     image_file = db.Column(db.String(20), nullable=False, default='default.jpg')
     password = db.Column(db.String(60), nullable=False)
     date_of_birth = db.Column(db.DateTime())
-    member_since = db.Column(db.DateTime(), default=datetime.utcnow)
     confirmed = db.Column(db.Boolean, default=False)
+
+    name = db.Column(db.String(64), nullable=True)
+    location = db.Column(db.String(64), nullable=True)
+    about_me = db.Column(db.Text(), nullable=True)
+    member_since = db.Column(db.DateTime(), default=datetime.utcnow)
+    last_seen = db.Column(db.DateTime(), default=datetime.utcnow)
 
     def __repr__(self):
         return f"User('{self.username}', {self.email}', {self.image_file}')"
-    
+
+    def ping(self):
+        self.last_seen = datetime.utcnow()
+        db.session.add(self)
+        db.session.commit()
+
     def get_token(self, expiration=600):
 
         token = jwt.encode(
