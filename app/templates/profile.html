@@ -36,9 +36,9 @@
                             <div class="user-info">
                                 <p class="user-name">
                                     <a class="white-icons" href="{{ url_for('users.profile', username=current_user.username) }}">
-                                        {{ current_user.username|upper }} </a>
+                                        {{ user.username|upper }} </a>
                                 </p>
-                                <p class="user-username">@{{ current_user.username }}</p>
+                                <p class="user-username">@{{ user.username }}</p>
                             </div>
                             <div class="more-info">
                                 <a href="">
@@ -58,7 +58,7 @@
                         <div class="timeline-topnav">
                             <a href="" class="timeline-topnav-btn btn-close"><svg xmlns="http://www.w3.org/2000/svg" width="100" fill="currentColor" class="solid left-arrow-icon" viewBox="0 0 16 16"> <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/> </svg></a>
                             <div class="timeline-topnav-user-info">
-                                <p class="timeline-username">{{ username|upper }}</p>
+                                <p class="timeline-username">{{ user.username|upper }}</p>
                                 <p class="gray-small-text smallx-text">169 posts</p>
                             </div>
                         </div>
@@ -73,8 +73,13 @@
                         </div>
                         <div class="user-profile">
                             <div class="user-profile-names">
-                                <p class="profile-name">{{ current_user.username|upper }}</p>
-                                <p class="gray-small-text">@{{ current_user.username }}</p>
+                                <p class="profile-name">{{ user.username|upper }}
+                                    <p class="gray-small-text">@{{ user.username }}</p>
+                                    <span class="last-seen">
+                                        <i class="fa-solid fa-circle green-it smallx-text"></i>
+                                        <span class="bio-extras-text smallx-text">Active {{ moment(user.last_seen).fromNow() }}</span>
+                                    </span>
+                                </p>
                             </div>
                             <div class="profile-bio">
                                 {% if user.bio %}
@@ -101,10 +106,6 @@
                                     <div class="joined-bio">
                                         <i class="fa-solid fa-calendar-days gray-small-text"></i>
                                         <span class="bio-extras-text">Joined {{ moment(user.member_since).format('LL') }}</span>
-                                    </div>
-                                    <div class="last-seen">
-                                        <i class="fa-solid fa-circle gray-small-text"></i>
-                                        <span class="bio-extras-text">Active {{ moment(user.last_seen).fromNow() }}</p>
                                     </div>
                                 </div>
                             </div>

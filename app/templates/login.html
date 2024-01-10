@@ -35,7 +35,7 @@
                                 </div>
                             </div>
                         </form>
-                        <span class="redirect-x">Don't have an account? <a href="{{ url_for('main.home')}}">Sign up</a></span>
+                        <span class="redirect-x">Don't have an account? <a href="{{ url_for('auth.register')}}">Sign up</a></span>
                     </div>
                 </div>
             {% else %}
@@ -63,7 +63,7 @@
                                 </div>
                             </div>
                         </form>
-                        <span class="redirect-x mb-10">Don't have an account? <a href="{{ url_for('main.home')}}">Sign up</a></span>
+                        <span class="redirect-x mb-10">Don't have an account? <a href="{{ url_for('auth.register') }}">Sign up</a></span>
                     </div>
                 </div>
             {% endif %}

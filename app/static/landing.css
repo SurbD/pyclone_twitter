@@ -102,6 +102,11 @@
     background-color: #0095ff;
 }
 
+.green-it {
+    /* background-color: #00ff95; */
+    color: #00ff95;
+}
+
 .landing-link .blue-it .link-btn-text {
     color: #ffffff;
 }

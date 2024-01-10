@@ -2,3 +2,10 @@
     padding: 0.3rem 1rem;
     margin-left: auto;
 }
+
+.edit-banner {
+    position: fixed;
+    margin: auto auto;
+    top: auto;
+    right: 10px;
+}
