@@ -1,12 +1,12 @@
 {% extends 'profile.html' %}
 
 {% block profile_section %}
-<div class="timeline-topnav">
+<div class="timeline-topnav padnone">
     <a class="" href="{{ url_for( 'users.profile', username=current_user.username) }}"><svg xmlns="http://www.w3.org/2000/svg" width="100" class="small-icon" viewBox="0 0 16 16"> <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/></svg></a>
     <div class="timeline-topnav-user-info">
-        <p class="time-line-heading">Edit profile</p>
+        <p class="timeline-heading">Edit profile</p>
     </div>
-    <a class="pagenav-btn timeline-btn">Save</a>
+    <!-- <a class="pagenav-btn timeline-btn">Save</a> -->
 </div>
 <div class="top-banner">
     <img class="cover-image" src="{{ url_for( 'static', filename='images/cover_images/default.png' ) }}" alt=""> <!-- Add to database as a column -->
@@ -18,9 +18,27 @@
     </div> 
 </div>
 <div class="edit-profile">
-    <div class="edit-profile-form-group">
-        <label for="username">Username</label>
-        <input id="username-edit" type="text">
-    </div>
+    <form name="edit-profile-form" id="editProfileForm" method="POST">
+        <div class="edit-profile-form-group">
+            <div class="edit-profile-form-fields">
+                <label for="name-edit">Name</label>
+                <input name="name" class="edit-profile-inputs" id="name-edit" type="text" placeholder="Account Name" value="{{ user.name if user.name else '' }}">
+            </div>
+            <div class="edit-profile-form-fields">
+                <label for="about-me-edit">About Me</label>
+                <input name="aboutMe" class="edit-profile-inputs" id="about-me-edit" type="text" placeholder="Tell us something about yourself..." value="{{ user.about_me if user.about_me else '' }}">
+            </div>
+            <div class="edit-profile-form-fields">
+                <label for="location-edit">Location</label>
+                <input name="location" class="edit-profile-inputs" id="location-edit" type="text" value="{{ user.location }}">
+            </div>
+        </div>
+        <input class="edit-profile-submit" type="submit" class="pagenav-btn timeline-btn" value="Save">
+    </form>
 </div>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+<script defer type="text/javascript" src="{{ url_for( 'static', filename='js/edit_profile_form.js' ) }}"></script>
 {% endblock %}

@@ -20,7 +20,7 @@ class User(db.Model, UserMixin):
     confirmed = db.Column(db.Boolean, default=False)
 
     name = db.Column(db.String(64), nullable=True)
-    location = db.Column(db.String(64), nullable=True)
+    location = db.Column(db.String(64), nullable=True, default="Earth-X 2.0")
     about_me = db.Column(db.Text(), nullable=True)
     member_since = db.Column(db.DateTime(), default=datetime.utcnow)
     last_seen = db.Column(db.DateTime(), default=datetime.utcnow)
