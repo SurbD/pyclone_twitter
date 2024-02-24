@@ -9,7 +9,7 @@ class PostForm(FlaskForm):
     )
     submit = SubmitField("Post")
 
-    def validate_body(self, body):
-        if not (5 <= len(body) <= 200):
-            raise ValidationError("Character Length Error!!. Post \
-            characters cannot be less than 5 and greater than 200 characters")
+    # def validate_body(self, body):
+    #     if not (5 <= len(body.data) <= 250):
+    #         raise ValidationError("Character Length Error! \
+    #         Field must be between 5 and 250 characters long")

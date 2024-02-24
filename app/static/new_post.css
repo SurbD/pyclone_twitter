@@ -36,6 +36,10 @@
   color: var(--primary);
 }
 
+.blue-outline {
+  border: 2px solid var(--primary);
+}
+
 .post-text-group {
   padding-left: calc(60px + 0.59rem);
 }
@@ -63,4 +67,11 @@
   padding: 0.5rem 1rem;
   color: #ffffff;
   cursor: pointer;
+}
+
+.errors {
+  list-style: none;
+  font-family: "Cascadia Code";
+  font-size: 0.7rem;
+    color: red;
 }

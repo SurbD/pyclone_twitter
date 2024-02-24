@@ -2,10 +2,9 @@
 __pycache__
 .env
 
+# files
+app/site.db
+
 # Virtual Environments
 venv
 linux_venv
-
-# files
-app/site.db
-site.db
