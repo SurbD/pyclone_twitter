@@ -160,3 +160,11 @@ function displayErr(valid) {
         document.getElementById("email-error").innerText = "";
     }
 }
+
+
+const resendCode = document.getElementById('resend-verification-code')
+resendCode.addEventListener('click', (event) => {
+    event.preventDefault()
+    console.log('Not reloading')
+    sendVerificationCode();
+})

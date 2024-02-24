@@ -29,14 +29,14 @@
                         <!-- <a href="" class="pagenav-btn">Post</a> -->
                     </div>
                     <div class="user-icon-info">
-                        <a href="" class="pagenav-btn">Post</a>
+                        <a href="{{ url_for( 'main.new_post' ) }}" class="pagenav-btn">Post</a>
                         <div class="user-icon-info-container">
                             <div id="user-icon" class="user-icon" data-content="url(../static/images/profile_pics/{{ current_user.image_file }})"></div>
                             <!-- <a class="user-icon" href="{{ url_for( 'users.profile', username=current_user.username) }}"></a> -->
                             <div class="user-info">
                                 <p class="user-name">
                                     <a class="white-icons" href="{{ url_for('users.profile', username=current_user.username) }}">
-                                        {{ user.username|upper }} </a>
+                                        {{ user.username }} </a>
                                 </p>
                                 <p class="user-username">@{{ user.username }}</p>
                             </div>

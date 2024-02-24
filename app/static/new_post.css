@@ -1,0 +1,66 @@
+.gap-post-sections {
+  gap: 1.5rem;
+}
+
+.post-topnav {
+  display: flex;
+  gap: 1.8rem;
+  align-items: center;
+}
+
+.post-profile-image {
+  width: 60px;
+  height: 60px;
+  border-radius: 100%;
+  outline: 3px solid var(--background);
+  background-size: cover;
+}
+
+.post-top-info {
+  display: flex;
+  gap: 0.59rem;
+  align-items: center;
+}
+
+.post-audience {
+  border: 1px solid var(--primary);
+  border-radius: 1rem;
+  padding: 0.3rem 0.4rem;
+}
+
+.post-audience select {
+  background: none;
+  border: none;
+  outline: none;
+  /* border: 1px solid var(--primary); */
+  color: var(--primary);
+}
+
+.post-text-group {
+  padding-left: calc(60px + 0.59rem);
+}
+
+.post-textarea {
+  max-width: 100%;
+  min-width: 100%;
+  max-height: 12rem;
+  min-height: 12rem;
+  outline: none;
+  background: none;
+  border: none;
+  color: whitesmoke;
+  /* font-size: 1rem; */
+  font-family: "Cascadia Code";
+}
+
+.post-btn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  border: 1px solid var(--primary);
+  background: none;
+  border-radius: 1rem;
+  padding: 0.5rem 1rem;
+  color: #ffffff;
+  cursor: pointer;
+}

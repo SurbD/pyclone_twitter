@@ -13,6 +13,7 @@ def load_user(user_id):
 
 
 class User(db.Model, UserMixin):
+    __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(20), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
@@ -27,11 +28,13 @@ class User(db.Model, UserMixin):
     member_since = db.Column(db.DateTime(), default=datetime.utcnow)
     last_seen = db.Column(db.DateTime(), default=datetime.utcnow)
 
+    posts = db.relationship('Post', backref='author', lazy='dynamic')
+
     def __repr__(self):
         return f"User('{self.username}', {self.email}', {self.image_file}')"
 
     def set_default_name(self):
-        print('Setting default name')
+        # print("Setting default name")
         if not self.name:
             self.name = self.username
             db.session.add(self)
@@ -70,3 +73,14 @@ class User(db.Model, UserMixin):
         if not (user_id := data.get("user_id")):
             return None
         return User.query.get(user_id)
+
+
+class Post(db.Model):
+    __tablename__ = "posts"
+    id = db.Column(db.Integer, primary_key=True)
+    body = db.Column(db.Text, nullable=False)
+    timestamp = db.Column(db.DateTime, default=datetime.utcnow, index=True)
+    author_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+
+    def __repr__(self):
+        return f"Post('{self.author.username}', {self.timestamp})"

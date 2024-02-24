@@ -11,7 +11,6 @@ api = Blueprint("api", __name__)
 
 # Routes API call from Axios
 
-
 @api.route("/validate-email", methods=["POST"])
 def validate_email():
     # For Javascript email validation,
@@ -72,7 +71,6 @@ def validate_inputs():
                 "date_of_birth": {"isValid": dob_validate, "message": None},
             },
         }
-
     return
 
 
@@ -134,7 +132,6 @@ def edit_profile():
         location = request_data["location"] or None
         about_me = request_data["aboutMe"] or None
 
-        print(name, location, about_me)
         current_user.name = name if name else current_user.name
         current_user.location = location if location else current_user.location
         current_user.about_me = about_me if about_me else current_user.about_me
