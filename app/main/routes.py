@@ -12,10 +12,11 @@ main = Blueprint("main", __name__)
 @main.route("/")
 @main.route("/home")
 def home():
-    if current_user.is_authenticated:
-        return render_template("home.html", username=current_user.username)
+    if not current_user.is_authenticated:
+        return render_template("landing_page.html")
 
-    return render_template("landing_page.html")
+    posts = Post.query.all()
+    return render_template("home.html", username=current_user.username, posts=posts)
     # return render_template('home.html', username='Devyn')
 
 
