@@ -4,7 +4,10 @@ __pycache__
 
 # files
 app/site.db
+requirements
 
 # Virtual Environments
 venv
 linux_venv
+
+requirements.txt

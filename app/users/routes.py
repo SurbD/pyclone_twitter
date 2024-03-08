@@ -1,7 +1,7 @@
-from flask import Blueprint, render_template, redirect, url_for
+from flask import Blueprint, render_template, redirect, url_for, abort
 from flask_login import current_user, login_required
 
-from app.models import User
+from app.models import User, Post
 
 users = Blueprint('users', __name__)
 
@@ -9,10 +9,10 @@ users = Blueprint('users', __name__)
 @login_required
 def profile(username):
     user = User.query.filter_by(username=username.lower()).first()
-
-    if user:
-        return render_template('profile.html', username=username, user=user)
-    return redirect(url_for('auth.login'))
+    if user is None:
+        abort(404)
+    posts = user.posts.order_by(Post.timestamp.desc()).all() # finish post on profile page this night
+    return render_template('profile.html', username=username, user=user, posts=posts)
 
 @users.route('/<username>/edit', methods=['GET', 'POST'])
 @login_required

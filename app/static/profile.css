@@ -21,10 +21,10 @@
     width: 1.3rem; }
 
 .x-container {
-    width: 80%;
-    margin: 0 auto;
-    display: flex;
-    justify-content: center; }
+    /* width: 80%; */
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    /* justify-content: center;  */}
 
 .x-pagenavs-container {
     display: flex;
@@ -380,3 +380,10 @@
     align-items: center;
     gap: 0.7rem;
 } */
+
+/* Other customizations */
+
+.x-home-timeline {
+    width: 80%;
+    margin: 0 auto;
+}

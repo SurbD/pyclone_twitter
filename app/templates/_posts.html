@@ -2,11 +2,35 @@
   {% for post in posts %}
   <li class="post">
     <div class="post-user">
-      <h3>{{ post.author.name | upper }}</h3>
-      <small>{{ post.author.username | upper }}</small>
+        <div class="post-user-info border-it">
+            <!-- <div id="user-icon" class="user-icon border-it" data-content="url(../static/images/profile_pics/{{ post.author.image_file }})"></div> -->
+            <!-- <img class="user-icon post-user-icon" src="{{ url_for('static', filename='images/profile_pics/' + post.author.image_file) }}" alt=""> -->
+            <div class="profile-thumbnail">
+                <a href="{{ url_for('users.profile', username=post.author.username) }}">
+                    <img class="user-icon post-user-icon" src="{{ post.author.gravatar() }}"/>
+                </a>
+            </div>
+            <div class="post-user-text-info">
+                <div class="right-user-info">
+                    <h3>{{ post.author.name | upper }}</h3>
+                    <small>@{{ post.author.username | lower }}</small>
+                </div>
+                <div class="post-date">{{ moment(post.timestamp).fromNow() }}</div>
+            </div>
+        </div>
     </div>
+    <p class="post-body">{{ post.body }}</p>
 
-    <p>{{ post.body }}</p>
+    <div class="post-footer">
+        <a href="{{ url_for('main.post', id=post.id) }}">
+            <span class="label label-default">TweetLink</span>
+        </a>
+        {% if current_user == post.author %}
+        <a href="{{ url_for('main.delete_post', id=post.id) }}">
+            <span class="red-btn delete">Delete</span>
+        </a>
+        {% endif %}
+    </div>
   </li>
   {% endfor %}
 </ul>

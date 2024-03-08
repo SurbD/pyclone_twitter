@@ -11,9 +11,7 @@
     <img class="cover-image" src="{{ url_for( 'static', filename='images/cover_images/default.png' ) }}" alt=""> <!-- Add to database as a column -->
     <div class="top-banner-user-info">
         <!-- <input type='file' class='edit-banner'> -->
-        <div id="pfp" class="x-profile-image" data-content="url(../static/images/profile_pics/{{ user.image_file }})">
-            <!-- <input type='file' class='edit-profile' -->
-        </div>
+        <img id="pfp" class="x-profile-image" src="{{ user.gravatar() }}">
     </div> 
 </div>
 <div class="edit-profile">

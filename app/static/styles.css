@@ -4,6 +4,7 @@
 @import url("landing.css");
 @import url("new_post.css");
 @import url("login.css");
+@import url("_posts.css");
 @import url("register.css");
 @import url("profile.css");
 @import url("edit_profile.css");
@@ -144,4 +145,32 @@ svg.left-arrow-icon {
   width: 1.5rem;
   fill: var(--gray150);
   font-size: 3.3rem;
+}
+
+
+/* Pagination widget styling '_macros.html' */
+.pagination {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.pagination li {
+    border: 1px solid #001310;
+    padding: 0.5rem 0.8rem;
+}
+
+.pagination .disabled {
+    a {
+        color: var(--gray600);
+    }
+}
+
+.pagination .active {
+    background-color: var(--primary);
+    color: var(--x-white);
+    a {
+        color: white;
+    }
 }

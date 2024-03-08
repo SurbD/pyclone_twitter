@@ -16,6 +16,7 @@ class Config:
 
     XCLONE_MAIL_SUBJECT_PREFIX = '[Xcorps Clone]'
     XCLONE_MAIL_SENDER = 'Xcorps Admin <noreply@xcorp.com>'
+    XCLONE_POSTS_PER_PAGE = 20
     
     @staticmethod
     def init_app(app):

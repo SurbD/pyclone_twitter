@@ -12,13 +12,12 @@
         <div class="post-section">
             <div class="post-top-info">
                 <div class="user-post-image">
-                    <div id="pfp" class="post-profile-image" data-content="url(../static/images/profile_pics/{{ user.image_file }})">
-                    </div>
+                    <img id="pfp" class="post-profile-image" src="{{ user.gravatar() }})"/>
                 </div> 
                 <span class="post-audience">
                     <select name="post-audience" id="post-audience-select">
                         <option value="Public" selected>Public</option>
-                        <option value="Public">Friends</option>
+                        <option value="Friends">Friends</option>
                     </select>
                 </span>
             </div>

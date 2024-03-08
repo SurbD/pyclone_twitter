@@ -12,7 +12,11 @@
                             </svg>
                         </div>
                         <div class="x-pagenavs-links">
-                            <div class="x-pagenavs-link"><i class="fa-solid fa-house white-icons x-icon-home"></i> <span>Home</span></div>
+                            <div class="x-pagenavs-link">
+                                <a href="{{ url_for( 'main.home') }}">
+                                    <i class="fa-solid fa-house white-icons x-icon-home"></i> <span>Home</span>
+                                </a>
+                            </div>
                             <div class="x-pagenavs-link"><i class="fa-solid fa-magnifying-glass white-icons x-icon-home"></i><span>Explore</span></div>
                             <div class="x-pagenavs-link"><i class="fa-regular fa-bell white-icons x-icon-home"></i><span>Notifications</span></div>
                             <div class="x-pagenavs-link"><i class="fa-regular fa-envelope white-icons x-icon-home"></i><span>Messages</span></div>
@@ -31,14 +35,15 @@
                     <div class="user-icon-info">
                         <a href="{{ url_for( 'main.new_post' ) }}" class="pagenav-btn">Post</a>
                         <div class="user-icon-info-container">
-                            <div id="user-icon" class="user-icon" data-content="url(../static/images/profile_pics/{{ current_user.image_file }})"></div>
+                            <!-- <div id="user-icon" class="user-icon" data-content="url(../static/images/profile_pics/{{ current_user.image_file }})"></div> -->
+                            <img class="user-icon" id="user-icon" src="{{ current_user.gravatar() }}">
                             <!-- <a class="user-icon" href="{{ url_for( 'users.profile', username=current_user.username) }}"></a> -->
                             <div class="user-info">
                                 <p class="user-name">
                                     <a class="white-icons" href="{{ url_for('users.profile', username=current_user.username) }}">
-                                        {{ user.name }} </a>
+                                        {{ current_user.name }} </a>
                                 </p>
-                                <p class="user-username">@{{ user.username }}</p>
+                                <p class="user-username">@{{ current_user.username }}</p>
                             </div>
                             <div class="more-info">
                                 <a href="">
@@ -65,7 +70,9 @@
                         <div class="top-banner">
                             <img class="cover-image" src="{{ url_for( 'static', filename='images/cover_images/default.png' ) }}" alt=""> <!-- Add to database as a column -->
                             <div class="top-banner-user-info">
-                                <div id="pfp" class="x-profile-image" data-content="url(../static/images/profile_pics/{{ user.image_file }})"></div> <!-- url('../static/images/profile_pics/default.jpg') -->
+                                <img id="pfp" class="x-profile-image" src="{{ user.gravatar() }}">
+                                <!-- <div id="pfp" class="x-profile-image" data-content="url(../static/images/profile_pics/{{ user.image_file }})"></div> <!-- url('../static/images/profile_pics/default.jpg')
+                                <!-- <img class="img-rounded profile-thumbnail" src="{{ user.gravatar(size=256) }}" -->
                                 {% if current_user.username == username %}
                                 <a href="{{ url_for( 'users.edit_profile', username=current_user.username) }}" class="profile-edit-btn">Edit Profile</a>
                                 {% endif %}
@@ -116,6 +123,13 @@
                         </div>
                         {% endblock %}
                     </div>
+                    <div class="user-post-section">
+                        {% block includes_userpost %}
+                            <h3>Posts by {{ user.username }}</h3>
+                            {% include '_posts.html' %}
+                        {% endblock %}
+                    </div>
+
                 </div>
                 <!-- End of Main Middle Section -->
                 <div class=" x-discover-section">
